@@ -56,7 +56,7 @@
 ### Base 1 —
 
 - **Champs interrogés :** <!-- ex. .ti,ab,kf -->
-- **Date d'exécution :** <!-- écrivez 2026-09-15, jamais 20260915 -->
+- **Date d'exécution :** <!-- format AAAA-MM-JJ, tirets compris -->
 - **Nombre de résultats :**
 - **Filtres appliqués :** <!-- ou : aucun, et pourquoi -->
 - **Équation intégrale :**
