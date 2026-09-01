@@ -1,6 +1,6 @@
 # Interventions scolaires de prévention du suicide chez les adolescents
 
-Tremblay, Léa ; Nguyen, Minh ; Côté, Samuel
+Tremblay, Léa ; Nguyen, Minh ; Côté, Samuel-Labinne
 
 PHA 0000 — Recherche documentaire en santé, Université de Montréal
 
