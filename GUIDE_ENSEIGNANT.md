@@ -8,20 +8,21 @@ Document interne. À déposer dans le dépôt ou à garder de côté, au choix.
 
 **`equipes.yml` est la source unique de vérité.** Vous le remplissez une fois en début de session : sigle du cours, établissement, licence, et la composition des équipes.
 
-Il alimente ensuite tout seul la page titre de chaque PDF, le nom de chaque fichier produit, et les avertissements de cohérence. Vos étudiants n'écrivent aucune métadonnée — c'est ce qui rend le dispositif tenable à vingt équipes.
+Il alimente ensuite tout seul la page titre de chaque PDF, le nom de chaque fichier produit, et les avertissements de cohérence. Vos étudiants n'écrivent aucune métadonnée — c'est ce qui rend le dispositif tenable à vingt équipes. Une faute de frappe dans un sigle de cours se corrige à un seul endroit, pas dans vingt fichiers.
 
 ---
 
-## Avant la session
+## État de la configuration
 
-- [ ] Remplir `equipes.yml` : cours, établissement, session, et les vingt équipes
-- [ ] Créer un dossier par équipe sous `equipes/`, avec une copie du gabarit dans chacun
-- [ ] Se mettre dans la **bypass list** du ruleset (`Repository admin`)
-- [ ] Vérifier que `verification` est marqué **Required** dans une pull request d'essai
-- [ ] `Settings → General → Pull Requests` → cocher **Automatically delete head branches**
-- [ ] `Settings → Moderation options → Interaction limits` → **Limit to repository collaborators**, six mois
-- [ ] Inviter les étudiants avec le rôle **Write**
-- [ ] Tester le parcours complet depuis un second compte
+- [x] Ruleset actif, bypass réservée à `Repository admin`
+- [x] Contrôle `verification` marqué **Required**
+- [x] `Automatically delete head branches`
+- [x] `Interaction limits` → collaborateurs seulement
+- [x] `equipes.yml`, workflow, gabarit, README et grilles déposés
+- [x] Vingt dossiers d'équipe
+- [ ] **Noms réels des équipes dans `equipes.yml`**
+- [ ] Invitation des étudiants avec le rôle **Write**
+- [ ] Test complet depuis un second compte
 
 ### Pourquoi la bypass list
 
@@ -58,8 +59,6 @@ Bouton **Submit review**, en haut à droite de l'onglet Files changed :
 | **Request changes** | Corrections à faire | Bloque la fusion jusqu'à nouvelle révision |
 | **Approve** | Travail accepté | Débloque la fusion |
 
-Puis **Submit review**.
-
 ### Fusionner
 
 Une fois approuvée, la soumission se fusionne avec **Merge pull request**. La branche se supprime toute seule, et les PDF se génèrent dans la foulée.
@@ -79,9 +78,13 @@ equipe-02_belanger-benali-o-connor_strategie-de-recherche.pdf
 
 Le numéro vient du **nom du dossier**, jamais du texte de l'équipe : une erreur de numérotation dans leur document ne fausse pas la nomenclature. Les noms de famille viennent de `equipes.yml`. La date est celle du dernier enregistrement de l'équipe, lue dans l'historique Git.
 
-Une équipe absente de `equipes.yml` ressort en `auteurs-non-indiques`, avec un avertissement jaune dans le journal d'exécution — et un autre, plus tôt, dès la pull request.
+> **Les artefacts expirent après 90 jours**, plafond non contournable sur un dépôt public. Téléchargez le paquet en fin de session et archivez-le hors de GitHub : c'est votre pièce justificative en cas de contestation de note, et votre source pour un dépôt éventuel dans Papyrus.
 
-> **Les artefacts expirent après 90 jours**, plafond non contournable sur un dépôt public. Téléchargez le paquet en fin de session et archivez-le hors de GitHub : c'est votre pièce justificative en cas de contestation de note.
+### Relancer une production sans rien modifier
+
+Onglet **Actions** → workflow `document-final` dans la colonne de gauche → bouton **Run workflow** → `main`.
+
+Utile après avoir corrigé `equipes.yml` : les PDF se refabriquent avec les bons noms, sans toucher aux travaux.
 
 ---
 
@@ -100,11 +103,27 @@ Le premier est votre file de correction.
 
 ---
 
+## Lire le journal d'exécution
+
+Onglet **Actions** → une exécution → section **Annotations**.
+
+| Message | Ce qu'il faut faire |
+|---|---|
+| *Suite de 8 chiffres détectée* | **Erreur rouge, bloquante.** Matricule à retirer — ou date écrite `20260915` au lieu de `2026-09-15`. |
+| *Adresse courriel détectée* | Erreur rouge. Le dépôt est public. |
+| *les membres de equipe-XX sont encore « Nom, Prénom »* | Avertissement jaune. Remplissez `equipes.yml`, sinon le PDF sortira en `auteurs-non-indiques`. |
+| *equipe-XX est absente de equipes.yml* | Avertissement jaune. Le dossier existe, l'équipe n'est pas déclarée. |
+| *Déclarées dans equipes.yml sans dossier* | Avertissement jaune. Créez les dossiers manquants. |
+
+Les avertissements jaunes n'empêchent pas la fusion : une équipe absente de la liste est votre problème, pas celui des étudiants. Seules les erreurs rouges bloquent.
+
+---
+
 ## Problèmes courants
 
-**« Le contrôle est rouge et je ne comprends pas. »** Le journal indique le fichier et le numéro de ligne. Cause la plus fréquente : une date écrite `20260915`, que la détection prend pour un matricule. Faites écrire `2026-09-15`.
+**⚠ Jamais huit chiffres consécutifs, nulle part.** La détection lit le fichier brut, commentaires HTML compris. Une date `20260915`, un ISBN, un numéro de subvention, ou même un contre-exemple écrit dans une consigne — tout cela bloque la remise. Écrivez toujours les dates `2026-09-15`. *Ce piège s'est déclenché une fois pendant la mise en place : la consigne « jamais 20260915 » du gabarit contenait elle-même la forme interdite.*
 
-**Le PDF sort en `auteurs-non-indiques`.** L'équipe manque dans `equipes.yml`, ou ses membres y sont encore sous la forme `Nom, Prénom`. C'est votre fichier, pas le leur : corrigez-le et relancez le workflow depuis l'onglet Actions (`Run workflow`).
+**Le PDF sort en `auteurs-non-indiques`.** L'équipe manque dans `equipes.yml`, ou ses membres y sont encore sous la forme `Nom, Prénom`. C'est votre fichier, pas le leur : corrigez-le puis relancez le workflow.
 
 **« J'ai ouvert deux soumissions par erreur. »** Fermez la seconde sans la fusionner (**Close pull request**). Le travail reste dans la première. La branche ne se supprime pas toute seule à la fermeture — seulement à la fusion.
 
@@ -114,10 +133,14 @@ Le premier est votre file de correction.
 
 **Un fichier supprimé par accident.** Rien ne disparaît d'un dépôt Git. Ajoutez le chemin du fichier après `/commits/main/` dans l'URL du dépôt : l'historique reste consultable, et le contenu se récupère depuis le commit précédent.
 
+**Vous ne pouvez pas approuver votre propre soumission.** C'est une règle de GitHub, pas un réglage. Fusionnez directement — la bypass list vous le permet.
+
 ---
 
-## D'une session à l'autre
+## Maintenance annuelle
 
-`Settings → General → Template repository`. Le bouton **Use this template** crée un dépôt neuf, sans historique partagé : une cohorte par instance, sans traîner les remises de l'an dernier.
+**Les versions d'actions vieillissent.** GitHub déprécie régulièrement le moteur Node sous les actions ; le journal d'exécution vous préviendra par un avertissement jaune. Actuellement en `@v6`. Un avertissement aujourd'hui, une panne dans quelques mois.
 
-Pensez aussi à créer une *Release* étiquetée en fin de session (`v1.0-h27`) : elle fige l'état du dépôt et, contrairement aux artefacts, n'expire jamais.
+**D'une session à l'autre.** `Settings → General → Template repository`. Le bouton **Use this template** crée un dépôt neuf, sans historique partagé : une cohorte par instance, sans traîner les remises de l'an dernier.
+
+Créez aussi une *Release* étiquetée en fin de session (`v1.0-h27`) : elle fige l'état du dépôt et, contrairement aux artefacts, n'expire jamais.
