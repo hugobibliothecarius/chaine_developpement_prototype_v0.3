@@ -1,0 +1,124 @@
+# ─────────────────────────────────────────────────────────────────────────
+# LISTE DES ÉQUIPES — source unique de vérité
+#
+# Vous seul modifiez ce fichier. Les étudiants n'y touchent jamais.
+# Rempli une fois en début de session, il alimente automatiquement :
+#
+#   • la page titre de chaque PDF (titre, cours, auteurs, date, licence)
+#   • le nom de chaque fichier produit
+#   • la création des dossiers d'équipe
+#
+# Résultat : vos étudiants n'écrivent aucune métadonnée. Ils rédigent, c'est tout.
+# ─────────────────────────────────────────────────────────────────────────
+
+titre: "Stratégie de recherche"
+cours: "PHA 0000 — Recherche documentaire en santé"
+etablissement: "Université de Montréal"
+session: "Automne 2026"
+licence: "CC BY 4.0"
+
+# Les deux conventions de nom fonctionnent, même mélangées :
+#   - Tremblay, Léa      → nom de famille = ce qui précède la virgule
+#   - Léa Tremblay       → nom de famille = le dernier mot
+
+equipes:
+
+  equipe-01:
+    - Tremblay, Léa
+    - Nguyen, Minh
+    - Côté, Samuel
+
+  equipe-02:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-03:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-04:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-05:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-06:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-07:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-08:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-09:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-10:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-11:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-12:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-13:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-14:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-15:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-16:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-17:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-18:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-19:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
+
+  equipe-20:
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
