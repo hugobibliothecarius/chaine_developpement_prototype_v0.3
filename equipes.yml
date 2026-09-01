@@ -6,7 +6,7 @@
 #
 #   • la page titre de chaque PDF (titre, cours, auteurs, date, licence)
 #   • le nom de chaque fichier produit
-#   • la création des dossiers d'équipe
+#   • les avertissements de cohérence dans les pull requests
 #
 # Résultat : vos étudiants n'écrivent aucune métadonnée. Ils rédigent, c'est tout.
 # ─────────────────────────────────────────────────────────────────────────
@@ -24,9 +24,9 @@ licence: "CC BY 4.0"
 equipes:
 
   equipe-01:
-    - Tremblay, Léa
-    - Nguyen, Minh
-    - Côté, Samuel
+    - Nom, Prénom
+    - Nom, Prénom
+    - Nom, Prénom
 
   equipe-02:
     - Nom, Prénom
