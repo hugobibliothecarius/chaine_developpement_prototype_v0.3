@@ -6,6 +6,7 @@
 Détecte et refuse si le fichier strategie.MD contient:
   - un matricule à huit chiffres
   - courriel personnel (autre que @umontreal.ca)
+
 Un avis à l'attention de l'enseignant apparait dans l'onglet *Checks* 
 
 ### Approbation - *merge* de la *pull request*
