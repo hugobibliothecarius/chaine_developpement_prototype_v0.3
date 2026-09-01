@@ -1,0 +1,125 @@
+# .github/workflows/document-final.yml
+#
+# Version corrigée et mise à l'échelle de generer_document-final.yml.
+#
+# Trois corrections par rapport au prototype v0.3 :
+#   1. Le grep visait « strategie.md » alors que le fichier s'appelle
+#      « strategie_recherche.md ». grep renvoyait le code 2 (fichier
+#      introuvable), donc la condition « if » était fausse, donc le workflow
+#      passait TOUJOURS. La détection ne détectait rien.
+#   2. « path: paquet\ » : la barre oblique inverse est prise au pied de la
+#      lettre. L'artefact n'était pas téléversé.
+#   3. La détection ne visait qu'un seul fichier à la racine. Avec 20 équipes,
+#      elle balaie maintenant tous les fichiers de equipes/.
+#
+# La vérification est un job distinct nommé « verification » : inscrivez ce nom
+# dans « Require status checks to pass » du ruleset pour qu'une pull request
+# contenant un renseignement personnel devienne impossible à fusionner.
+
+name: document-final
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+
+  # ─────────────────────────────────────────────────────────────────────
+  # 1. Garde-fou : bloque la fusion si le travail contient des
+  #    renseignements personnels. Tourne sur chaque pull request.
+  # ─────────────────────────────────────────────────────────────────────
+  verification:
+    name: verification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Détection de renseignements personnels
+        run: |
+          set -uo pipefail
+          shopt -s globstar nullglob
+
+          fichiers=(equipes/**/*.md)
+          if [ ${#fichiers[@]} -eq 0 ]; then
+            echo "::error::Aucun fichier trouvé sous equipes/ — arborescence inattendue."
+            exit 1
+          fi
+          echo "Fichiers analysés : ${#fichiers[@]}"
+
+          erreurs=0
+
+          echo "── Matricules (suites de 8 chiffres) ──"
+          if grep -nEH '\b[0-9]{8}\b' "${fichiers[@]}"; then
+            echo "::error::Suite de 8 chiffres détectée. S'il s'agit d'un matricule, retirez-le. S'il s'agit d'une date, écrivez-la 2026-09-01."
+            erreurs=1
+          fi
+
+          echo "── Adresses courriel ──"
+          if grep -nEHi '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}' "${fichiers[@]}"; then
+            echo "::error::Adresse courriel détectée. Le dépôt est public : aucune adresse ne doit y figurer."
+            erreurs=1
+          fi
+
+          echo "── Numéros de téléphone ──"
+          if grep -nEH '(\+1[ .-]?)?\(?[0-9]{3}\)?[ .-][0-9]{3}[ .-][0-9]{4}' "${fichiers[@]}"; then
+            echo "::error::Numéro de téléphone détecté."
+            erreurs=1
+          fi
+
+          if [ "$erreurs" -ne 0 ]; then
+            echo "::error::Fusion bloquée. Retirez les renseignements personnels, puis enregistrez de nouveau sur la même branche."
+            exit 1
+          fi
+
+          echo "✓ Aucun renseignement personnel détecté."
+
+  # ─────────────────────────────────────────────────────────────────────
+  # 2. Production des PDF, après la fusion dans main seulement.
+  # ─────────────────────────────────────────────────────────────────────
+  document:
+    name: Production des PDF
+    needs: verification
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Installer pandoc et LaTeX
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            pandoc texlive-xetex texlive-fonts-recommended \
+            texlive-lang-french lmodern
+
+      - name: Construire les PDF
+        run: |
+          set -euo pipefail
+          shopt -s globstar nullglob
+          mkdir -p paquet
+
+          for f in equipes/**/strategie_recherche.md; do
+            equipe=$(basename "$(dirname "$f")")
+            pandoc "$f" \
+              --pdf-engine=xelatex \
+              -V geometry:margin=2.5cm \
+              -V lang=fr \
+              -o "paquet/${equipe}_strategie_recherche.pdf"
+            echo "→ paquet/${equipe}_strategie_recherche.pdf"
+          done
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: documents-finaux
+          path: paquet/
+          retention-days: 90
+          if-no-files-found: error
+
+      # ⚠ 90 jours est le plafond pour un dépôt public : un artefact déposé
+      # en janvier a disparu en avril. Si vous devez conserver les PDF au-delà
+      # (contestation de note, archivage), téléchargez-les avant l'échéance ou
+      # remplacez ce téléversement par la création d'une Release, qui n'expire pas.
