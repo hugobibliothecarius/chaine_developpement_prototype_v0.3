@@ -1,27 +1,36 @@
 # .github/workflows/document-final.yml
 #
-# Version corrigée et mise à l'échelle de generer_document-final.yml.
+# Deux jobs.
 #
-# Trois corrections par rapport au prototype v0.3 :
-#   1. Le grep visait « strategie.md » alors que le fichier s'appelle
-#      « strategie_recherche.md ». grep renvoyait le code 2 (fichier
-#      introuvable), donc la condition « if » était fausse, donc le workflow
-#      passait TOUJOURS. La détection ne détectait rien.
-#   2. « path: paquet\ » : la barre oblique inverse est prise au pied de la
-#      lettre. L'artefact n'était pas téléversé.
-#   3. La détection ne visait qu'un seul fichier à la racine. Avec 20 équipes,
-#      elle balaie maintenant tous les fichiers de equipes/.
+# 1. « verification » — sur chaque pull request. Refuse les renseignements
+#    personnels et signale les équipes absentes de equipes.yml.
+#    Inscrivez ce nom dans « Require status checks to pass » du ruleset.
 #
-# La vérification est un job distinct nommé « verification » : inscrivez ce nom
-# dans « Require status checks to pass » du ruleset pour qu'une pull request
-# contenant un renseignement personnel devienne impossible à fusionner.
+# 2. « document » — après la fusion. Produit un PDF par équipe.
+#
+# Toutes les métadonnées viennent de equipes.yml, jamais du fichier étudiant :
+# titre, cours, établissement, auteurs, licence. La date est celle du dernier
+# enregistrement de l'équipe, lue dans l'historique Git.
+#
+#   equipes/equipe-01/strategie_recherche.md
+#     → equipe-01_tremblay-nguyen-cote_strategie-recherche.pdf
+#
+# Les étudiants n'écrivent aucune métadonnée. Ils rédigent, c'est tout.
 
 name: document-final
 
 on:
   pull_request:
+    paths:
+      - 'equipes/**'
+      - 'equipes.yml'
+      - '.github/workflows/document-final.yml'
   push:
     branches: [main]
+    paths:
+      - 'equipes/**'
+      - 'equipes.yml'
+      - '.github/workflows/document-final.yml'
   workflow_dispatch:
 
 permissions:
@@ -30,8 +39,7 @@ permissions:
 jobs:
 
   # ─────────────────────────────────────────────────────────────────────
-  # 1. Garde-fou : bloque la fusion si le travail contient des
-  #    renseignements personnels. Tourne sur chaque pull request.
+  # 1. Garde-fou
   # ─────────────────────────────────────────────────────────────────────
   verification:
     name: verification
@@ -39,7 +47,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Détection de renseignements personnels
+      - name: Renseignements personnels
         run: |
           set -uo pipefail
           shopt -s globstar nullglob
@@ -55,7 +63,7 @@ jobs:
 
           echo "── Matricules (suites de 8 chiffres) ──"
           if grep -nEH '\b[0-9]{8}\b' "${fichiers[@]}"; then
-            echo "::error::Suite de 8 chiffres détectée. S'il s'agit d'un matricule, retirez-le. S'il s'agit d'une date, écrivez-la 2026-09-01."
+            echo "::error::Suite de 8 chiffres détectée. S'il s'agit d'un matricule, retirez-le. S'il s'agit d'une date, écrivez-la sous la forme 2026-09-15."
             erreurs=1
           fi
 
@@ -72,14 +80,46 @@ jobs:
           fi
 
           if [ "$erreurs" -ne 0 ]; then
-            echo "::error::Fusion bloquée. Retirez les renseignements personnels, puis enregistrez de nouveau sur la même branche."
+            echo "::error::Fusion bloquée. Retirez ce qui est signalé ci-dessus, puis enregistrez de nouveau sur la même branche : ce contrôle repartira tout seul."
             exit 1
           fi
 
           echo "✓ Aucun renseignement personnel détecté."
 
+      - name: Cohérence de equipes.yml
+        run: |
+          python3 - <<'PY'
+          import sys, glob, os
+          try:
+              import yaml
+          except ImportError:
+              print("::warning::PyYAML absent, contrôle ignoré.")
+              sys.exit(0)
+
+          if not os.path.exists('equipes.yml'):
+              print("::warning::equipes.yml absent — les PDF sortiront sans auteurs.")
+              sys.exit(0)
+
+          cfg = yaml.safe_load(open('equipes.yml', encoding='utf-8')) or {}
+          roster = cfg.get('equipes') or {}
+          dossiers = sorted(os.path.basename(d) for d in glob.glob('equipes/*') if os.path.isdir(d))
+
+          for d in dossiers:
+              membres = roster.get(d)
+              if not membres:
+                  print(f"::warning::L'équipe {d} n'est pas dans equipes.yml — son PDF sortira en « auteurs-non-indiques ».")
+              elif any('Nom, Prénom' in str(m) for m in membres):
+                  print(f"::warning::L'équipe {d} contient encore des noms d'exemple dans equipes.yml.")
+
+          orphelins = [e for e in roster if e not in dossiers]
+          if orphelins:
+              print(f"::warning::Déclarées dans equipes.yml sans dossier : {', '.join(orphelins)}")
+
+          print(f"✓ {len(dossiers)} dossiers, {len(roster)} équipes déclarées.")
+          PY
+
   # ─────────────────────────────────────────────────────────────────────
-  # 2. Production des PDF, après la fusion dans main seulement.
+  # 2. Production des PDF
   # ─────────────────────────────────────────────────────────────────────
   document:
     name: Production des PDF
@@ -88,6 +128,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0        # historique complet : nécessaire pour dater chaque travail
 
       - name: Installer pandoc et LaTeX
         run: |
@@ -95,22 +137,95 @@ jobs:
           sudo apt-get install -y --no-install-recommends \
             pandoc texlive-xetex texlive-fonts-recommended \
             texlive-lang-french lmodern
+          python3 -c "import yaml" 2>/dev/null || pip install --quiet pyyaml
+
+      - name: Préparer les métadonnées
+        run: |
+          python3 - <<'PY'
+          import os, glob, re, subprocess, unicodedata, yaml, pathlib
+
+          cfg = yaml.safe_load(open('equipes.yml', encoding='utf-8')) or {}
+          roster = cfg.get('equipes') or {}
+          titre  = cfg.get('titre', 'Stratégie de recherche')
+          cours  = cfg.get('cours', '')
+          etab   = cfg.get('etablissement', '')
+          lic    = cfg.get('licence', 'CC BY 4.0')
+
+          def slug(s):
+              s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode()
+              return re.sub(r'[^A-Za-z0-9]+', '-', s).strip('-').lower()
+
+          def famille(nom):
+              nom = str(nom).strip()
+              return nom.split(',')[0].strip() if ',' in nom else nom.split()[-1]
+
+          pathlib.Path('meta').mkdir(exist_ok=True)
+          pathlib.Path('paquet').mkdir(exist_ok=True)
+          lignes = []
+
+          for f in sorted(glob.glob('equipes/*/strategie_recherche.md')):
+              equipe = os.path.basename(os.path.dirname(f))
+              membres = [str(m) for m in (roster.get(equipe) or [])
+                         if str(m).strip() and 'Nom, Prénom' not in str(m)]
+
+              if membres:
+                  noms = '-'.join(slug(famille(m)) for m in membres)
+              else:
+                  noms = 'auteurs-non-indiques'
+                  print(f"::warning file={f}::{equipe} absente de equipes.yml — PDF nommé « {noms} ».")
+
+              # Date du dernier enregistrement de ce fichier précis
+              date = subprocess.run(
+                  ['git', 'log', '-1', '--format=%ad', '--date=short', '--', f],
+                  capture_output=True, text=True).stdout.strip() or ''
+
+              sous_titre = ' — '.join(x for x in (cours, etab) if x)
+
+              meta = {
+                  'title': titre,
+                  'subtitle': sous_titre,
+                  'author': membres or ['Auteurs non indiqués'],
+                  'date': date,
+                  'lang': 'fr',
+                  'rights': lic,
+                  'colorlinks': True,
+              }
+              mf = f'meta/{equipe}.yml'
+              with open(mf, 'w', encoding='utf-8') as h:
+                  yaml.safe_dump(meta, h, allow_unicode=True, sort_keys=False)
+
+              sortie = f'paquet/{equipe}_{noms}_{slug(titre)}.pdf'
+              lignes.append(f'{f}\t{mf}\t{sortie}')
+
+          pathlib.Path('manifeste.tsv').write_text('\n'.join(lignes) + '\n', encoding='utf-8')
+          print(f'{len(lignes)} document(s) à produire.')
+          PY
 
       - name: Construire les PDF
         run: |
-          set -euo pipefail
-          shopt -s globstar nullglob
-          mkdir -p paquet
+          set -uo pipefail
+          echec=0
+          while IFS=$'\t' read -r source meta sortie; do
+            [ -z "$source" ] && continue
+            if pandoc "$source" \
+                 --metadata-file="$meta" \
+                 --pdf-engine=xelatex \
+                 --standalone \
+                 -V geometry:margin=2.5cm \
+                 -o "$sortie"
+            then
+              echo "→ $sortie"
+            else
+              echo "::error file=$source::La conversion en PDF a échoué."
+              echec=1
+            fi
+          done < manifeste.tsv
 
-          for f in equipes/**/strategie_recherche.md; do
-            equipe=$(basename "$(dirname "$f")")
-            pandoc "$f" \
-              --pdf-engine=xelatex \
-              -V geometry:margin=2.5cm \
-              -V lang=fr \
-              -o "paquet/${equipe}_strategie_recherche.pdf"
-            echo "→ paquet/${equipe}_strategie_recherche.pdf"
-          done
+          [ "$echec" -ne 0 ] && exit 1
+
+          echo
+          echo "PDF produits :"
+          ls -1 paquet/
 
       - uses: actions/upload-artifact@v4
         with:
@@ -119,7 +234,6 @@ jobs:
           retention-days: 90
           if-no-files-found: error
 
-      # ⚠ 90 jours est le plafond pour un dépôt public : un artefact déposé
-      # en janvier a disparu en avril. Si vous devez conserver les PDF au-delà
-      # (contestation de note, archivage), téléchargez-les avant l'échéance ou
-      # remplacez ce téléversement par la création d'une Release, qui n'expire pas.
+      # ⚠ 90 jours est le plafond pour un dépôt public. Téléchargez le paquet
+      # en fin de session, ou remplacez ce téléversement par une Release,
+      # qui n'expire pas.
