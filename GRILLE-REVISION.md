@@ -1,11 +1,4 @@
-# Grille de révision — enseignante
-
-Points de vérification à parcourir en lisant la demande de fusion.
-**Ceci n'est pas la grille d'évaluation** : aucune note, aucun jugement ne
-figure ici. La grille d'évaluation reste dans Word et se remet dans StudiUM.
-
-Ce fichier est visible des étudiants, et c'est voulu : savoir ce qui sera
-vérifié fait partie de l'apprentissage.
+# Grille de correction
 
 ## Question et concepts
 
