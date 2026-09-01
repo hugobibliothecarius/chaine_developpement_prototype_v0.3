@@ -1,0 +1,44 @@
+name: Paquet de dépôt
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  paquet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refuser les renseignements personnels
+        run: |
+          if grep -rEn '\b[0-9]{8}\b|[a-z-]+\.[a-z-]+@umontreal\.ca' strategie.md; then
+            echo "::error::Renseignement personnel détecté — à retirer avant le dépôt"
+            exit 1
+          fi
+
+      - name: Installer pandoc et LaTeX
+        if: github.event_name != 'pull_request'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            pandoc texlive-xetex texlive-fonts-recommended \
+            texlive-lang-french lmodern
+
+      - name: Construire le PDF
+        if: github.event_name != 'pull_request'
+        run: |
+          mkdir -p paquet
+          pandoc strategie.md \
+            --pdf-engine=xelatex \
+            -V geometry:margin=2.5cm \
+            -V lang=fr \
+            -o paquet/strategie.pdf
+
+      - uses: actions/upload-artifact@v4
+        if: github.event_name != 'pull_request'
+        with:
+          name: paquet-de-depot
+          path: paquet/
