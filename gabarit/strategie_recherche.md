@@ -1,70 +1,123 @@
-# Stratégie de recherche — Équipe XX
+<!-- ─────────────────────────────────────────────────────────────────
+     Vous n'avez aucune information administrative à saisir.
+     Vos noms, le sigle du cours, la date et la licence sont ajoutés
+     automatiquement à la page titre du PDF.
 
-> Remplacez `XX` par votre numéro d'équipe et supprimez les lignes de consigne
-> (celles qui commencent par `>`) au fur et à mesure que vous remplissez le document.
+     Les blocs comme celui-ci sont des consignes. Ils n'apparaissent ni
+     sur GitHub ni dans le PDF. Laissez-les ou supprimez-les.
 
-**Membres :**
-**Date de remise :**
+     Rédigez, c'est tout.
+     ───────────────────────────────────────────────────────────────── -->
 
----
 
 ## 1. Question de recherche
 
-> Formulez votre question en une ou deux phrases. Elle doit être assez précise
-> pour orienter la recherche, assez large pour donner des résultats.
+<!-- Formulez la question en une ou deux phrases, puis justifiez sa
+     pertinence clinique en un court paragraphe. -->
 
-## 2. Décomposition en concepts
+**Question :**
 
-> Un concept par ligne. Les termes contrôlés proviennent du thésaurus ou de
-> l'index de la base de données visée (MeSH, Thesaurus de l'ERIC, etc.).
+**Pertinence clinique :**
 
-| Concept | Synonymes et variantes | Terme(s) contrôlé(s) | Source du vocabulaire |
-|---|---|---|---|
-|  |  |  |  |
-|  |  |  |  |
-|  |  |  |  |
 
-## 3. Équations de recherche
+## 2. Concepts
 
-> Une équation par base de données interrogée. Indiquez les opérateurs booléens,
-> les troncatures, les guillemets et les champs ciblés.
+<!-- Un bloc par concept. Dupliquez le bloc ci-dessous autant de fois
+     que nécessaire, et renumérotez. -->
 
-**Base de données 1 —**
+### Concept 1 —
+
+- **Portée :**
+- **Vocabulaire contrôlé**
+    - Base et version du thésaurus :
+    - Descripteurs :
+    - Explode : oui / non — pourquoi :
+- **Vocabulaire libre**
+    - Mots-clés :
+    - Troncatures et variantes :
+
+### Concept 2 —
+
+- **Portée :**
+- **Vocabulaire contrôlé**
+    - Base et version du thésaurus :
+    - Descripteurs :
+    - Explode : oui / non — pourquoi :
+- **Vocabulaire libre**
+    - Mots-clés :
+    - Troncatures et variantes :
+
+
+## 3. Interrogations
+
+<!-- Un bloc par base de données interrogée. L'équation doit être
+     reproduite telle qu'elle a été exécutée, sans reformulation. -->
+
+### Base 1 —
+
+- **Champs interrogés :** <!-- ex. .ti,ab,kf -->
+- **Date d'exécution :** <!-- écrivez 2026-09-15, jamais 20260915 -->
+- **Nombre de résultats :**
+- **Filtres appliqués :** <!-- ou : aucun, et pourquoi -->
+- **Équation intégrale :**
 
 ```
+Collez ici l'équation complète, opérateurs booléens compris.
 ```
 
-**Base de données 2 —**
+### Base 2 —
+
+- **Champs interrogés :**
+- **Date d'exécution :**
+- **Nombre de résultats :**
+- **Filtres appliqués :**
+- **Équation intégrale :**
 
 ```
+
 ```
+
 
 ## 4. Critères d'inclusion et d'exclusion
 
-| | Critère | Justification |
-|---|---|---|
-| Inclusion |  |  |
-| Exclusion |  |  |
+**Inclusion**
+
+- Critère — justification :
+
+**Exclusion**
+
+- Critère — justification :
+
 
 ## 5. Journal de recherche
 
-> Consignez chaque interrogation, même celles qui n'ont rien donné : les impasses
-> font partie du raisonnement et seront évaluées.
+<!-- Consignez chaque interrogation, y compris celles qui n'ont rien
+     donné : les impasses font partie du raisonnement et sont évaluées.
+     Un bloc par tentative. -->
 
-| Date | Source | Équation utilisée | Résultats | Retenus | Observations |
-|---|---|---|---|---|---|
-|  |  |  |  |  |  |
-|  |  |  |  |  |  |
+### 2026-MM-JJ —
+
+- **Ce que nous avons essayé :**
+- **Résultats obtenus :**
+- **Ce que nous en avons tiré :**
+
 
 ## 6. Ajustements et bilan
 
-> Qu'avez-vous modifié en cours de route, et pourquoi ? Que feriez-vous
-> différemment en reprenant la recherche depuis le début ?
+<!-- Qu'avez-vous modifié en cours de route, et pourquoi ?
+     Que feriez-vous différemment en reprenant depuis le début ? -->
 
-## 7. Références
 
-> Selon le style de citation demandé dans le plan de cours.
+## 7. Références retenues
+
+<!-- Selon le style de citation demandé dans le plan de cours. -->
 
 1.
 2.
 3.
+
+
+## 8. Filiation
+
+<!-- Si ce travail dérive d'une stratégie déjà déposée dans le dépôt,
+     collez son permalien ici. Sinon, écrivez : travail original. -->
