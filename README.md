@@ -6,10 +6,10 @@ Chaine de développement pour les travaux étudiants de [SIGLE DU COURS]
   - Fichier qui décrit le répertoire, ses composantes et son fonctionnement (ce que vous êtes en train de consulter)
 - LICENSE.md
   - Contient la description de la licence Creative Commons.
-- PULL_REQUEST_TEMPLATE.md (GRILLE_VERIFICATION_ETUDIANT.md)
+- GRILLE_VERIFICATION_ETUDIANT.md
   - Grille de vérification. Apparait à l'étudiant lors de la soumission pour correction (ouverture de la *pull request*)
-- GRILLE-REVISION.md (GRILLE_CORRECTION_ENSEIGNANT.MD)
-  - Grille de correction pour l'enseignant. Apparait lors de [...]
+- GRILLE_CORRECTION.MD
+  - Grille de correction pour l'enseignant. Visible pour les étudiants. Apparait lors de [...]
 - strategie.md (strategie_recherche.md)
   - Gabarit de la stratégie de recherche à compléter par les étudiants dans le cadre du travail demandé.
 
