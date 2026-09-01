@@ -1,7 +1,7 @@
 ## Description
 Chaine de développement pour les travaux étudiants de [SIGLE DU COURS]
 
-### Composantes
+### Composants
 - README.md
   - Fichier qui décrit le répertoire, ses composantes et son fonctionnement (ce que vous êtes en train de consulter)
 - LICENSE.md
