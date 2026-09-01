@@ -10,16 +10,8 @@ Détecte et refuse si le fichier strategie.MD contient:
 Un avis à l'attention de l'enseignant apparait dans l'onglet *Checks* 
 
 ### Approbation - *merge* de la *pull request*
-— elle produit un PDF uniforme, déposé comme artefact
-`paquet-de-depot` dans l'onglet Actions. La page de titre vient des premières
-lignes de `strategie.md` : c'est le seul endroit visible où la licence
-apparaîtra, la notice Papyrus ne comportant pas de champ de licence.
-
-Un document refusé échoue en quelques secondes, l'installation de LaTeX n'ayant
-pas lieu.
-
-Elle ne produit plus de fiche de métadonnées : l'étudiant remplit la notice
-directement dans Papyrus.
+Produit un PDF, déposé comme *artefact* `paquet-de-depot` dans l'onglet *Actions*. 
+La page titre se génère à partir des premières lignes de `strategie.md`. La page titre indique aussi la licence CC BY.
 
 ## Protocole
 
