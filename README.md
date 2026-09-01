@@ -16,12 +16,12 @@ Chaine de développement pour les travaux étudiants de [SIGLE DU COURS]
 ## Fonctionnement
 
 ### 1. Soumission pour correction (Étudiant) - ouverture de la *pull request*
-Détecte et refuse si le fichier strategie.MD contient:
+Détecte et refuse si le fichier strategie_recherche.MD contient:
   - un matricule à huit chiffres
   - courriel personnel (autre que @umontreal.ca)
 
 Le cas échéant, un avis à l'attention de l'enseignant apparait dans l'onglet *Checks*.
 
 ### 2. Approbation (Enseignant) - *merge* de la *pull request*
-Produit un PDF, déposé comme *artefact* `paquet-de-depot` dans l'onglet *Actions*. 
+Produit un PDF, déposé comme *artefact* `document-final` dans l'onglet *Actions*. 
 La page titre se génère à partir des premières lignes de `strategie.md`. La page titre indique aussi la licence CC BY.
