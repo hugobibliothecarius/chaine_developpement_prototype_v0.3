@@ -1,46 +1,15 @@
-# Trousse de test — dépôt d'une stratégie de recherche
+## Description
 
-Dépôt d'essai pour vérifier, en une demi-journée, que la chaîne
-GitHub → Papyrus tient debout. Contenu fictif, aucun travail étudiant réel.
+## Fonctionnement
 
-Cinq fichiers, aucun YAML, aucun script. L'étudiant ne rédige que
-`strategie.md` ; il saisit ensuite ses métadonnées directement dans le
-formulaire de dépôt de Papyrus.
+### Soumission pour correction - ouverture de la *pull request* - *ÉTUDIANT*
+Détecte et refuse si le fichier strategie.MD contient:
+  - un matricule à huit chiffres
+  - courriel personnel (autre que @umontreal.ca)
+Un avis à l'attention de l'enseignant apparait dans l'onglet *Checks* 
 
-## Mise en place
-
-Le dépôt doit être **public** : sur un compte gratuit, la protection de
-branche et les minutes d'exécution ne le sont que là — et il n'y a rien de
-confidentiel ici.
-
-**1. Glissez tous les fichiers visibles de ce dossier** dans
-*Add file → Upload files*, puis *Commit changes*.
-
-**2. Créez ensuite le seul fichier caché**, à la main. Ce chemin est imposé
-par GitHub : les chaînes ne sont lues que dans `.github/workflows/`.
-
-*Add file → Create new file*, et tapez dans la case du nom :
-
-    .github/workflows/paquet.yml
-
-Les barres obliques créent les dossiers. Collez le contenu de
-`paquet.yml.txt`, puis *Commit changes*.
-
-> Ne tentez pas de glisser un dossier commençant par un point : le Finder
-> le masque, `Cmd+A` ne le sélectionne pas, et il sera silencieusement omis.
-> Taper le chemin contourne le problème.
-
-## Ce que la chaîne fait
-
-Deux choses, à deux moments différents.
-
-**À l'ouverture d'une demande de fusion, et à chaque fusion** — elle refuse le
-document si un matricule à huit chiffres ou un courriel nominatif y traîne.
-Le signal apparaît donc dans l'onglet *Checks* avant que l'enseignante ne lise
-le travail : le garde-fou prévient au lieu de constater. Aucun formulaire ne
-le remplace.
-
-**À la fusion seulement** — elle produit un PDF uniforme, déposé comme artefact
+### Approbation - *merge* de la *pull request*
+— elle produit un PDF uniforme, déposé comme artefact
 `paquet-de-depot` dans l'onglet Actions. La page de titre vient des premières
 lignes de `strategie.md` : c'est le seul endroit visible où la licence
 apparaîtra, la notice Papyrus ne comportant pas de champ de licence.
