@@ -31,11 +31,11 @@ jobs:
         if: github.event_name != 'pull_request'
         run: |
           mkdir -p paquet
-          pandoc strategie.md \
+          pandoc strategie_recherche.md \
             --pdf-engine=xelatex \
             -V geometry:margin=2.5cm \
             -V lang=fr \
-            -o paquet/strategie.pdf
+            -o paquet/strategie_recherche.pdf
 
       - uses: actions/upload-artifact@v4
         if: github.event_name != 'pull_request'
