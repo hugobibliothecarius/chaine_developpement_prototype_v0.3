@@ -32,7 +32,7 @@ Les blocs `<!-- ... -->` sont des consignes : ils n'apparaissent ni sur GitHub n
 
 **N'écrivez aucun matricule, aucune adresse courriel, aucun numéro de téléphone.** Le dépôt est public et un contrôle automatique refusera le travail.
 
-Écrivez les dates sous la forme `2026-09-15`. Écrite `20260915`, une date ressemble à un matricule et fait échouer le contrôle.
+**Jamais huit chiffres à la suite**, où que ce soit — le contrôle y voit un matricule. Écrivez les dates avec des tirets, `2026-09-15`, jamais collées. Cela vaut aussi à l'intérieur des blocs de consigne : le contrôle lit le fichier en entier, y compris ce qui n'apparaît pas à l'écran.
 
 ### 4. Enregistrer
 
@@ -101,4 +101,3 @@ Répondez dans la soumission plutôt que par courriel : tout reste au même endr
 Ouvrez une *issue* dans l'onglet **Issues** plutôt que d'écrire un courriel : la réponse servira aux autres équipes.
 
 Syntaxe Markdown : [guide de GitHub](https://docs.github.com/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
-
