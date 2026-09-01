@@ -20,7 +20,7 @@ Détecte et refuse si le fichier strategie.MD contient:
   - un matricule à huit chiffres
   - courriel personnel (autre que @umontreal.ca)
 
-Le cas échéant, un avis à l'attention de l'enseignant apparait dans l'onglet *Checks* 
+Le cas échéant, un avis à l'attention de l'enseignant apparait dans l'onglet *Checks*.
 
 ### Approbation (Enseignant) - *merge* de la *pull request*
 Produit un PDF, déposé comme *artefact* `paquet-de-depot` dans l'onglet *Actions*. 
