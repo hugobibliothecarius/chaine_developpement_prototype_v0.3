@@ -1,4 +1,4 @@
-name: Paquet de dépôt
+name: Document final
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Refuser les renseignements personnels
+      - name: Détection de renseignements personnels
         run: |
           if grep -rEn '\b[0-9]{8}\b|[a-z-]+\.[a-z-]+@umontreal\.ca' strategie.md; then
             echo "::error::Renseignement personnel détecté — à retirer avant le dépôt"
@@ -40,5 +40,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: github.event_name != 'pull_request'
         with:
-          name: paquet-de-depot
+          name: Document final
           path: paquet\
