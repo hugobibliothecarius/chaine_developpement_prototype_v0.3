@@ -1,11 +1,7 @@
 ## Avant de soumettre
 
-*Cochez les cases **après** avoir créé la demande de fusion : elles deviennent
+*Cochez les cases **après** avoir créé la soumission pour correction (ouverture la pull request) : elles deviennent
 cliquables dans la vue rendue.*
-
-Ces points suivent l'ordre de la grille d'évaluation. Les cocher ne garantit
-pas une bonne note — ils vérifient seulement que chaque critère est
-**évaluable**, c'est-à-dire que l'information nécessaire figure au document.
 
 - [ ] La question de recherche est formulée explicitement
 - [ ] La pertinence clinique de la question est justifiée
