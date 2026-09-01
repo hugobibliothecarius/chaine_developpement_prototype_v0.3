@@ -4,7 +4,7 @@
 #
 # 1. « verification » — sur chaque pull request. Refuse les renseignements
 #    personnels et signale les équipes absentes de equipes.yml.
-#    Inscrivez ce nom dans « Require status checks to pass » du ruleset.
+#    Ce nom est inscrit dans « Require status checks to pass » du ruleset.
 #
 # 2. « document » — après la fusion. Produit un PDF par équipe.
 #
@@ -13,7 +13,7 @@
 # enregistrement de l'équipe, lue dans l'historique Git.
 #
 #   equipes/equipe-01/strategie_recherche.md
-#     → equipe-01_tremblay-nguyen-cote_strategie-recherche.pdf
+#     → equipe-01_tremblay-nguyen-cote_strategie-de-recherche.pdf
 #
 # Les étudiants n'écrivent aucune métadonnée. Ils rédigent, c'est tout.
 
@@ -45,7 +45,7 @@ jobs:
     name: verification
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Renseignements personnels
         run: |
@@ -127,7 +127,7 @@ jobs:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0        # historique complet : nécessaire pour dater chaque travail
 
@@ -172,7 +172,10 @@ jobs:
                   noms = '-'.join(slug(famille(m)) for m in membres)
               else:
                   noms = 'auteurs-non-indiques'
-                  print(f"::warning file={f}::{equipe} absente de equipes.yml — PDF nommé « {noms} ».")
+                  raison = (f"{equipe} est absente de equipes.yml"
+                            if equipe not in roster
+                            else f"les membres de {equipe} sont encore « Nom, Prénom » dans equipes.yml")
+                  print(f"::warning file={f}::{raison} — PDF nommé « {noms} ».")
 
               # Date du dernier enregistrement de ce fichier précis
               date = subprocess.run(
@@ -227,7 +230,7 @@ jobs:
           echo "PDF produits :"
           ls -1 paquet/
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: documents-finaux
           path: paquet/
