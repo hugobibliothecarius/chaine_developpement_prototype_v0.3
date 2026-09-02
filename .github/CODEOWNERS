@@ -1,18 +1,44 @@
-# Ce fichier va dans .github/CODEOWNERS
+# .github/CODEOWNERS
 #
-# Il désigne l'enseignant comme réviseur obligatoire de toute modification.
-# Combiné à la règle « Require review from Code Owners » du ruleset, il garantit
-# qu'aucune pull request ne peut être fusionnée sans son approbation.
+# Désigne le réviseur obligatoire de toute modification. Combiné à la règle
+# « Require review from Code Owners » du ruleset, aucune pull request ne peut
+# être fusionnée sans son approbation. GitHub demande sa révision
+# automatiquement dès qu'une pull request est ouverte.
 #
-# GitHub demande automatiquement sa révision dès qu'une pull request est ouverte.
+# ⚠ CE FICHIER ÉCHOUE EN SILENCE. La documentation de GitHub est explicite :
+#   « If you specify a user or team that doesn't exist or has insufficient
+#     access, a code owner will not be assigned. »
+#   Pas d'erreur, pas d'avertissement — la révision obligatoire disparaît, et
+#   n'importe quelle approbation suffit alors à fusionner.
+#
+#   Le propriétaire nommé ici doit avoir un accès en écriture au repository.
+#   À revérifier après tout changement de propriétaire ou de permissions,
+#   en particulier après un transfert vers une organisation : les permissions
+#   par défaut de l'organisation écrasent celles du repository.
+#
+#   Comment vérifier : ouvrez ce fichier dans l'interface de GitHub — les
+#   erreurs de syntaxe et les propriétaires invalides y sont surlignés. Puis
+#   ouvrez une pull request de test et confirmez que la révision est bien
+#   demandée automatiquement.
 
-# Remplacez par votre nom d'utilisateur GitHub
 *   @hugobibliothecarius
 
-# Variante avec plusieurs enseignants ou auxiliaires :
-# *   @nom-organisation/equipe-enseignante
+# ─── Après le transfert vers une organisation ────────────────────────────
 #
-# Variante pour répartir la correction entre auxiliaires :
-# /equipes/equipe-01/   @auxiliaire-a
-# /equipes/equipe-02/   @auxiliaire-a
-# /equipes/equipe-03/   @auxiliaire-b
+# Remplacez la ligne ci-dessus par l'équipe enseignante. Une équipe survit au
+# départ d'une personne, un compte individuel non.
+#
+#   *   @nom-organisation/equipe-enseignante
+#
+# L'équipe doit avoir un accès Write EXPLICITE au repository, même si tous ses
+# membres y ont déjà accès autrement — c'est une exigence de GitHub, pas un
+# oubli de configuration.
+#
+# ─── Variante : répartir la correction entre auxiliaires ─────────────────
+#
+#   /equipes/equipe-01/   @auxiliaire-a
+#   /equipes/equipe-02/   @auxiliaire-a
+#   /equipes/equipe-03/   @auxiliaire-b
+#
+# Le motif « * » ci-dessus couvre aussi ce fichier, ce qui empêche qu'on le
+# modifie sans votre approbation. C'est voulu.
