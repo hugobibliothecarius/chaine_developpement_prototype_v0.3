@@ -13,6 +13,27 @@ fichiers et la licence sont produits automatiquement.
 
 ---
 
+## Ce que les équipes ont lu avant de commencer
+
+Le README ouvre sur une section qui les avertit de trois choses : leurs noms
+figureront sur la page titre sous licence CC BY, le dépôt est public et
+l'inscription est **permanente** — un nom enregistré ne s'efface pas de
+l'historique Git, même si l'équipe renonce au dépôt dans Papyrus.
+
+Il leur dit aussi qu'une **voie de remise non publique** existe, et de vous en
+parler *avant* de commencer. Attendez-vous donc à quelques demandes en début
+de session. Deux choses à savoir pour y répondre :
+
+- Le refus n'a aucune incidence sur la note, et l'étudiant n'a pas à se
+  justifier. C'est écrit tel quel dans le README.
+- Si le refus est individuel dans une équipe qui accepte, l'administrateur du
+  *repository* peut laisser cette seule équipe non nominative.
+
+Signalez-lui toute demande : c'est lui qui inscrit les noms, et il doit le
+faire une fois, avant la première remise.
+
+---
+
 ## Votre tableau de bord
 
 Allez dans l'onglet **Pull requests**. Chaque équipe y dépose sa remise sous
@@ -42,6 +63,27 @@ review`, vos commentaires sont regroupés et publiés seulement à la fin. Avec
 vingt équipes, ça fait une grosse différence, autant pour votre boîte de
 réception que pour la leur.
 
+### Proposer la correction au lieu de la décrire
+
+Dans la boîte de commentaire, une icône insère un **bloc de suggestion** déjà
+rempli avec le contenu de la ligne. Vous le corrigez, et l'équipe applique
+votre correction **d'un seul clic**, sans ouvrir l'éditeur et sans rien
+retaper.
+
+Servez-vous-en dès que la correction est concrète : remettre un symbole de
+troncature, ajouter les champs `.ti,ab,kf.`, déplacer une équation dans le bloc
+de code, corriger un descripteur. C'est incomparablement plus efficace qu'un
+commentaire en prose, et ça élimine le risque qu'elles comprennent de travers.
+
+Gardez le commentaire ordinaire pour ce qui demande une réflexion — « votre
+découpage en concepts mélange deux idées », « ce filtre exclut probablement des
+études pertinentes ». Une suggestion n'aurait aucun sens là.
+
+> **À savoir sur `Request changes`.** Une fois que vous avez demandé des
+> corrections, **vous êtes la seule** à pouvoir lever le blocage, en soumettant
+> une nouvelle révision approbatrice. L'approbation de quelqu'un d'autre ne
+> suffirait pas.
+
 ---
 
 ## Ce que le contrôle automatique ne voit pas
@@ -63,6 +105,21 @@ texte courant, demandez le déplacement avec **Request changes**.
 
 C'est la seule vérification de fond que l'automatisation ne peut pas faire à
 votre place.
+
+---
+
+## Relire un travail corrigé
+
+Quand une équipe a corrigé, ne relisez pas tout. Dans **Files changed**, le
+menu en haut à gauche affiche **All commits** par défaut : ouvrez-le et
+choisissez **Changes since your last review**.
+
+Le diff ne montre alors que ce qui a bougé depuis votre première lecture. La
+différence est considérable, et pas pour la raison qu'on croit : en « All
+commits », vous revoyez aussi toutes les lignes de consigne que l'équipe a
+effacées en remplissant le gabarit — souvent quarante lignes de suppressions
+pour quinze lignes de travail. Vous cherchez l'aiguille dans votre propre
+meule de foin.
 
 ---
 
