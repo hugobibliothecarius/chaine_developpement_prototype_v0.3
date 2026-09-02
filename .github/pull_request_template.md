@@ -11,22 +11,25 @@ cliquables que dans la vue rendue.*
 
 ### Contenu de la stratégie
 
-- [ ] La question de recherche est formulée explicitement
-- [ ] La pertinence clinique de la question est justifiée
-- [ ] Chaque concept à chercher est identifié séparément, avec sa portée
-- [ ] Pour chaque concept : les descripteurs du vocabulaire contrôlé sont listés, avec la base et la version du thésaurus
-- [ ] L'usage de l'option Explode est indiqué pour chaque descripteur
-- [ ] Pour chaque concept : les mots-clés du vocabulaire libre sont listés, avec leurs troncatures
-- [ ] Les champs de recherche interrogés sont précisés (ex. `.ti,ab,kf`)
-- [ ] L'équation intégrale est reproduite telle qu'exécutée, opérateurs booléens compris, pour chaque base
-- [ ] La date d'exécution et le nombre de résultats sont inscrits pour chaque base
-- [ ] Les filtres appliqués sont documentés — ou leur absence est justifiée
+- [ ] Le contexte de la demande, la question et sa pertinence clinique sont formulés
+- [ ] Le type de recherche visé est indiqué — il détermine l'exhaustivité attendue
+- [ ] Chaque concept est analysé séparément, avec sa portée retenue
+- [ ] Pour chaque concept : thésaurus et version, descripteurs, usage d'Explode justifié
+- [ ] Pour chaque concept : mots-clés, troncatures, champs interrogés, opérateurs de proximité
+- [ ] Chaque base porte son nom exact, son segment et sa couverture, avec la date d'exécution
+- [ ] L'historique de recherche est numéroté ligne par ligne, avec le décompte de chaque ligne
+- [ ] Les blocs de concepts sont nommés entre crochets dans l'historique
+- [ ] Les filtres appliqués sont justifiés — ou leur absence l'est
+- [ ] La légende des opérateurs employés est fournie, réduite à ce qui a servi
+- [ ] Le dédoublonnage est documenté
 - [ ] Les références retenues sont listées
 
 ### Saisie
 
-- [ ] Descripteurs, mots-clés et troncatures sont **entre accents graves** — sans eux, les symboles de troncature disparaissent du document final
+- [ ] L'historique de recherche est **dans un bloc de code** — sans quoi les symboles de troncature disparaissent du document final
+- [ ] Les termes des listes de concepts sont **entre accents graves**
 - [ ] Les dates sont écrites avec des tirets, `2026-09-15`, jamais collées
+- [ ] Les grands décomptes sont séparés par une espace : `12 345 678`
 - [ ] Les PMID, s'il y en a, portent leur étiquette : `PMID : 30234752`
 
 ### Dépôt
