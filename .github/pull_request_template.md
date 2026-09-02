@@ -11,7 +11,8 @@ cliquables que dans la vue rendue.*
 
 ### Contenu de la stratégie
 
-- [ ] La question est formulée explicitement et sa pertinence clinique est justifiée
+- [ ] La question est formulée comme une question, pas comme un sujet
+- [ ] La pertinence clinique nomme la décision que la recherche doit éclairer
 - [ ] Chaque concept est analysé séparément : portée retenue, usage d'Explode justifié, choix du vocabulaire expliqué
 - [ ] Les descripteurs, mots-clés, troncatures et champs interrogés figurent dans l'historique de la section 3
 - [ ] Chaque base porte son nom exact, son segment et sa couverture, avec la date d'exécution
