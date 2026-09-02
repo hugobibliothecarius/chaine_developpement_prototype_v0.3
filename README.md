@@ -15,14 +15,13 @@ document final. Vous rédigez, c'est tout.
 
 ## À lire avant de commencer : votre travail sera publié sous votre nom
 
-Ce n'est pas un devoir qui reste entre vous et l'enseignante. Prenez une minute
-pour lire ce qui suit — la suite en dépend.
+Ce n'est pas un devoir qui reste entre vous et l'enseignant
 
 ### Ce qui va se passer
 
 Vos noms figureront sur la page titre du document final, sous licence
 **Creative Commons Attribution 4.0**. Le *repository* est public : n'importe
-qui peut le consulter, aujourd'hui et plus tard. Les travaux retenus seront
+qui peut le consulter, aujourd'hui ou demain. Les travaux retenus seront
 ensuite déposés dans **Papyrus**, le dépôt institutionnel de l'Université de
 Montréal, où ils recevront une adresse permanente et pourront être cités.
 
@@ -51,12 +50,11 @@ remise non publique existe : vous serez évalués sur le même travail, sans que
 votre nom soit publié. Vous n'avez pas à vous justifier, et ce choix n'a aucune
 incidence sur votre note.
 
-Le dire après coup ne réparera rien, et c'est la seule raison pour laquelle
-cette section est en tête de page.
+Cette décision doit être prise en amont. Une fois vos noms inscrits, ils demeureront.
 
 ---
 
-## Une seule fois, avant de commencer
+## À faire avant avant de commencer
 
 **Rendez votre adresse courriel privée.** Cliquez sur votre photo en haut à
 droite → **Settings** → **Emails**, puis cochez **Keep my email addresses
