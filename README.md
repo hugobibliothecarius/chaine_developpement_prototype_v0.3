@@ -1,75 +1,87 @@
 # Nom du cours — Travaux d'équipe
 
-Tout se fait dans le navigateur. Il n'y a rien à installer et aucune ligne de
-commande à taper.
+## Description
+
+Ce *repository* (répertoire) a été conçu pour répondre aux besoins des étudiants et leur enseignant dans le cadre d'un cours portant les stratégies de recherche. 
+Ce répertoire, entre autres permet:
+- Aux étudiants et à l’enseignant de se doter d’un espace de travail pour faire progresser leurs travaux (édition et correction);
+- À l'enseignant de corriger les travaux et de rendre disponibles les recommandations;
+- La contribution des futures équipes issus des prochaines cohortes étudiantes du cours.
+---
+
+## Fonctionnement
+
+Tout se fait à partir du navigateur web. Il n'y a rien à installer et aucune ligne de
+commande à entrer
 
 **Vous n'avez aucune information administrative à saisir.** Vos noms, le sigle
 du cours, la date et la licence sont ajoutés automatiquement à la page titre du
-document final. Vous rédigez, c'est tout.
+document final. Tout ce que vous rédigez c'est votre stratégie de recherche.
 
-> Les mots en *italique* sont les termes de GitHub. L'interface n'est pas
-> traduite en français, alors ils ne le sont pas ici non plus. Le lexique en
-> fin de page les explique. Les mots en **gras** sont des boutons à cliquer.
-
+> Les mots en **gras** sont des boutons à cliquer. Les mots en *italique* sont les termes de GitHub. L'interface de GitHub n'est pas
+> traduite en français, ainsi, afin d'être clair, ce fichier README.MD utilise généralement les termes originaux en anglais. Un lexique, en
+> fin de page, vous est fournis pour vous orienter. 
 ---
 
-## À lire avant de commencer : votre travail sera publié sous votre nom
+## IMPORTANT: À lire **avant** de commencer
 
-Ce n'est pas un devoir qui reste entre vous et l'enseignant
+### Protection des renseignements personnels
 
-### Ce qui va se passer
+Ce répertoire est accessible au public: Si vous décidez de mettre votre travail ici, il sera publié **sous votre nom**: n'importe
+qui peut le consulter et voir votre nom.
 
-Vos noms figureront sur la page titre du document final, sous licence
-**Creative Commons Attribution 4.0**. Le *repository* est public : n'importe
-qui peut le consulter, aujourd'hui ou demain. Les travaux retenus seront
-ensuite déposés dans **Papyrus**, le dépôt institutionnel de l'Université de
-Montréal, où ils recevront une adresse permanente et pourront être cités.
-
-Concrètement, la licence CC BY permet à quiconque de reprendre et d'adapter
-votre stratégie, y compris à des fins commerciales, **à condition de vous
-créditer**. C'est aussi pour ça que vos noms y sont : sans eux, personne ne
-saurait qui créditer.
-
-### C'est permanent
-
-Un *repository* Git conserve tout. Une fois vos noms enregistrés, **ils y
+Un *repository* Git conserve tout, en permanance. Une fois vos noms enregistrés, **ils y
 restent**, même si :
-
 - la ligne est retirée du fichier plus tard ;
 - votre équipe décide finalement de ne pas déposer dans Papyrus ;
 - vous quittez le cours.
 
-Il n'y a pas de bouton pour effacer un enregistrement déjà publié. C'est la
-même raison qui rend le réglage de la section suivante urgent plutôt que
-facultatif.
+Il n'y a pas de possibilité d'effacer un enregistrement contenant votre nom qui serait déjà soumis/publié.
 
-### Si vous ne le voulez pas
+#### Droit de refus
 
-**Parlez-en à l'enseignante avant de commencer à travailler.** Une voie de
+**Parlez-en à l'enseignant avant de commencer à travailler.** Une voie de
 remise non publique existe : vous serez évalués sur le même travail, sans que
 votre nom soit publié. Vous n'avez pas à vous justifier, et ce choix n'a aucune
 incidence sur votre note.
 
-Cette décision doit être prise en amont. Une fois vos noms inscrits, ils demeureront.
+Cette décision doit être prise **avant** de débuter vos travaux. Une fois vos noms inscrits, ils demeureront.
+
+### Droit d'auteur
+
+Vos noms figureront sur la page titre du document final, sous licence
+**Creative Commons Attribution 4.0**. 
+
+La licence CC BY permet à quiconque de reprendre et d'adapter
+votre stratégie, y compris à des fins commerciales, **à condition de vous
+créditer**. C'est aussi pour ça que vos noms y sont : sans eux, personne ne
+saurait qui créditer.
+
+Lorsque vos travaux seront rédigés, corrigés et approuvés, les travaux pourront
+être déposés dans **Papyrus**, le dépôt institutionnel de l'Université de
+Montréal, où ils recevront une adresse permanente et d'où ils pourront être cités.
 
 ---
 
 ## À faire avant avant de commencer
 
-**Rendez votre adresse courriel privée.** Cliquez sur votre photo en haut à
+### Rendre votre adresse courriel privée.
+
+Cliquez sur votre photo en haut à
 droite → **Settings** → **Emails**, puis cochez **Keep my email addresses
 private**.
 
-Sans ce réglage, votre adresse personnelle apparaît publiquement dans
+Sans ce réglage, votre adresse courriel apparaît publiquement dans
 l'historique du *repository* — et comme pour vos noms, on ne peut plus
 corriger un *commit* déjà fait. Faites-le **avant** votre première
 contribution : c'est le seul moment où c'est possible.
 
 ---
+## Mode d'emploi
 
-## Remettre un travail
+### Remettre un travail
 
-### 1. Ouvrir le fichier de votre équipe
+#### 1. Ouvrir le fichier de votre équipe
 
 `equipes/` → votre dossier → `strategie_recherche.md`
 
@@ -77,19 +89,19 @@ C'est le seul fichier que vous modifiez. Ne touchez pas au dossier d'une autre
 équipe : la modification apparaîtrait dans l'historique et votre remise serait
 refusée.
 
-### 2. Cliquer sur le crayon
+#### 2. Cliquer sur le crayon
 
 L'icône ✏️ en haut à droite du fichier ouvre l'éditeur. L'onglet **Preview**
 vous montre le rendu.
 
-### 3. Rédiger
+#### 3. Rédiger
 
 Les blocs `<!-- ... -->` sont des consignes. Ils n'apparaissent ni sur GitHub
 ni dans le document final.
 
 **Laissez-les en place, écrivez en dessous.** Ils ne dérangent personne —
 personne ne les voit. Mais les effacer alourdit beaucoup la relecture de
-l'enseignante : elle verrait quarante lignes de consigne supprimées pour
+l'enseignant : il verrait quarante lignes de consigne supprimées pour
 quinze lignes de votre travail, et devrait chercher les vôtres là-dedans.
 
 **Toute syntaxe d'interrogation va dans un bloc de code** — les trois accents
@@ -139,7 +151,7 @@ ramène plus de dix millions de références donnerait huit chiffres collés, et
 le contrôle la refuserait. Écrivez `12 345 678` — c'est aussi la typographie
 correcte en français.
 
-### 4. Enregistrer
+#### 4. Enregistrer
 
 Cliquez sur **Commit changes…** en haut à droite. Dans la fenêtre :
 
@@ -150,7 +162,7 @@ votre numéro d'équipe :
 Équipe 03 — concepts et équations
 ```
 
-C'est par ce titre que l'enseignante vous retrouve dans sa liste. Effacez le
+C'est par ce titre que l'enseignant vous retrouve dans sa liste. Effacez le
 texte que GitHub propose — « Update strategie_recherche.md » ne dit pas qui
 vous êtes, et sa file de correction en compterait vingt identiques.
 
@@ -162,7 +174,7 @@ quel.**
 Validez. Le bouton s'appelle **Commit changes** ou **Propose changes** selon la
 version ; les deux font la même chose.
 
-### 5. Ouvrir la pull request
+#### 5. Ouvrir la pull request
 
 Un formulaire apparaît, déjà rempli en partie. Complétez l'identification de
 votre équipe — le numéro d'équipe, le travail, et vos **identifiants GitHub**,
@@ -178,7 +190,7 @@ pas vos noms. Puis cliquez sur **Create pull request**.
 **C'est votre remise.** Cochez ensuite les cases de la grille : elles ne
 deviennent cliquables qu'une fois la *pull request* créée.
 
-### 6. Vérifier le check automatique
+#### 6. Vérifier le check automatique
 
 Regardez au bas de la page, quelques secondes plus tard :
 
@@ -193,7 +205,7 @@ accepté.
 
 ---
 
-## Continuer à travailler
+### Continuer à travailler
 
 Votre travail n'est pas figé. Vous pouvez le modifier jusqu'à la date de
 remise, mais vous devez revenir **par votre pull request**, pas par le dossier
@@ -217,15 +229,15 @@ deuxième.
 
 ---
 
-## Après la remise
+### Après la soumission
 
-L'enseignante lit votre travail dans **Files changed** et commente ligne par
+L'enseignant lit votre travail dans **Files changed** et commente ligne par
 ligne. C'est ce que GitHub appelle une *review*.
 
-- **Elle demande des corrections** → modifiez votre fichier comme ci-dessus.
+- **Il demande des corrections** → modifiez votre fichier comme ci-dessus.
   Ses commentaires restent attachés à la discussion.
 
-Deux façons de corriger, selon ce qu'elle a écrit.
+Deux façons de corriger, selon la réponse.
 
 **Si sa remarque contient une suggestion** — un encadré qui montre la ligne
 corrigée — vous n'avez rien à éditer. Un bouton sous l'encadré applique sa
@@ -235,7 +247,7 @@ syntaxe.
 **Sinon**, il faut modifier le fichier. Un détail pratique : l'éditeur
 n'affiche pas les commentaires. Ouvrez donc votre remise dans un onglet, pour
 lire les annotations dans **Files changed**, et l'éditeur dans un second.
-- **Elle accepte le travail** → elle fait le *merge* de votre *pull request*.
+- **Il accepte le travail** → il fait le *merge* de votre *pull request*.
   Votre travail rejoint le dossier de l'équipe sur `main`, et le document final
   se produit automatiquement, page titre comprise.
 
@@ -249,9 +261,9 @@ endroit et vos coéquipiers suivent la discussion.
 1. Une seule *pull request* ouverte par équipe et par travail.
 2. Ne modifiez que le fichier de votre équipe.
 3. N'utilisez jamais le bouton **Merge pull request**. C'est le rôle de
-   l'enseignante.
+   l'enseignant.
 4. Aucun renseignement personnel dans le document.
-5. Pour votre propre usage de l'IA générative : l'autorisation de l'enseignante
+5. Pour votre propre usage de l'IA générative : l'autorisation de l'enseignant
    est requise, et vous devez déclarer votre utilisation. Le plan de cours prime
    sur tout ce qui est écrit ici. La [boîte à outils des
    bibliothèques](https://boite-outils.bib.umontreal.ca/trouver-evaluer/iag?p=5377614)
@@ -288,8 +300,8 @@ aux non-juristes se trouve sur le site de Creative Commons, en français :
 | `main` | la *branch* officielle, celle qui fait foi. Personne n'écrit dedans directement |
 | *pull request* (demande de fusion) | la demande d'intégrer votre *branch* dans `main`. Ici, c'est votre remise : votre travail, la discussion et la correction sont tous là |
 | *check* (contrôle) | une vérification automatique lancée à chaque *commit*. Le vôtre cherche les renseignements personnels |
-| *review* (révision) | la lecture commentée de l'enseignante, ligne par ligne |
-| *merge* (fusion) | l'intégration du travail accepté dans `main`. Réservé à l'enseignante |
+| *review* (révision) | la lecture commentée de l'enseignant, ligne par ligne |
+| *merge* (fusion) | l'intégration du travail accepté dans `main`. Réservé à l'enseignant |
 | *issue* (ticket) | une question posée dans l'onglet **Issues**, visible de tous |
 
 ---
