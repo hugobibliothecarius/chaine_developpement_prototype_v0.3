@@ -15,61 +15,70 @@ titre: "Stratégie de recherche"
 cours: "PHA 0000 — Recherche documentaire en santé"
 etablissement: "Université de Montréal"
 session: "Automne 2026"
-licence: "CC BY 4.0"
+licence: "Creative Commons Attribution 4.0 International (CC BY 4.0)"
+licence_url: "https://creativecommons.org/licenses/by/4.0/deed.fr"
+
+# Ces deux lignes composent la mention portée sur la page titre de chaque PDF.
+# C'est le seul endroit où la licence est visible : la notice de Papyrus n'a
+# pas de champ prévu pour elle.
 
 
 # ─── Qui signe la page titre ─────────────────────────────────────────────
 #
-#   equipe   → « Équipe 01 » partout. Tout « membres » inscrit plus bas est
-#              ignoré. C'est le réglage à garder pendant la session.
-#   membres  → une équipe qui a des « membres » signe de leurs noms ; une
-#              équipe qui n'en a pas signe « Équipe NN ». C'est le réglage du
-#              moment où on dépose dans Papyrus.
+#   membres  → les noms inscrits sous « equipes » ci-dessous. C'est le
+#              réglage retenu : ces documents sont publiés, cités et
+#              déposés dans Papyrus. Ce sont des travaux signés.
+#   equipe   → « Équipe 01 ». Réservé aux cas où une équipe refuse la
+#              publication sous son nom.
 #
-# ⚠ Le repository est public et l'historique Git est définitif : un nom
-#   enregistré une fois ne s'efface plus, même si on retire la ligne après.
+# Une signature « Équipe 01 » n'est pas professionnelle, et sous licence
+# CC BY elle ne donne à personne à créditer. L'attribution est la condition
+# de la licence : sans nom, elle ne veut rien dire.
 #
-#   Mettre soixante noms ici en début de session, avant que personne ait
-#   consenti, revient à publier la liste de classe. L'inscription à un cours
-#   est un renseignement personnel au sens de la Loi 25, et ça annule aussi la
-#   protection que donnent les comptes pseudonymes.
+# ⚠ CE QUI SUIT N'EST PAS RÉVERSIBLE. Le repository est public et
+#   l'historique Git est définitif : un nom inscrit ici y reste pour
+#   toujours, même si la ligne est retirée plus tard, même si l'équipe
+#   renonce au dépôt, même si un étudiant quitte le cours.
 #
-#   Une équipe qui décide de déposer dans Papyrus, elle, publie déjà sous son
-#   nom. Ajouter ses membres ici à ce moment-là, à sa demande, ne rend public
-#   que ce qu'elle a elle-même choisi de publier. C'est aussi ce qui permet au
-#   PDF déposé de porter ses auteurs : sans ça, la licence CC BY n'aurait
-#   personne à créditer.
+#   Deux choses à faire AVANT d'inscrire le premier nom :
 #
-#   Marche à suivre en fin de session : passez à « membres », ajoutez les noms
-#   des seules équipes qui déposent, relancez le workflow et récupérez les PDF.
-#   Les autres équipes continuent de signer « Équipe NN ».
+#   1. Obtenir le consentement écrit de chaque étudiant à la publication de
+#      son travail sous son nom, avec licence CC BY. Ce n'est plus une
+#      formalité : c'est ce qui rend la suite légitime.
+#   2. Prévoir une voie de remise non publique pour qui refuse — et laisser
+#      son équipe en « auteurs: equipe » si le refus est individuel dans une
+#      équipe qui accepte.
 #
-auteurs: equipe
+# ─────────────────────────────────────────────────────────────────────────
+auteurs: membres
 
 
 # ─── Les équipes ─────────────────────────────────────────────────────────
 #
-# Trois formes acceptées, mêlées librement :
+# Chaque équipe reçoit ses « membres ». Une équipe laissée vide signera
+# « Équipe NN » et le workflow vous le signalera par un avertissement.
 #
-#   equipe-01:                        ← rien à déclarer
+#   equipe-01:
+#     membres:
+#       - Tremblay, Léa
+#       - Nguyen, Minh
+#       - Samuel Côté
 #
 #   equipe-02:
 #     titre: "Antibioprophylaxie en chirurgie orthopédique"
-#
-#   equipe-03:
-#     titre: "…"
 #     membres:
-#       - Tremblay, Léa
-#       - Samuel Côté
+#       - …
 #
 # « titre » remplace le titre général sur la page titre de cette équipe.
 # Renseignez-le pour les travaux destinés à Papyrus, où chaque notice a besoin
 # d'un titre distinct. Laissé vide, le titre général s'applique.
 #
-# « membres » n'est lu que si auteurs: membres. Deux conventions de nom
-# fonctionnent, même mélangées :
+# Deux conventions de nom fonctionnent, même mélangées :
 #   - Tremblay, Léa   → nom de famille = ce qui précède la virgule
 #   - Léa Tremblay    → nom de famille = le dernier mot
+#
+# L'ordre des noms est celui que vous écrivez : il détermine l'ordre des
+# auteurs sur la page titre et dans le nom du fichier PDF.
 
 equipes:
 
