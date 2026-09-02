@@ -30,69 +30,41 @@
 ## 1. Question de recherche
 
 **Question :**
-<!-- Une ou deux phrases. Une question, pas un sujet : « metformine et
-     insuffisance rénale » est un sujet ; « chez un patient diabétique
-     de type 2 avec un DFG sous 30, peut-on maintenir la metformine »
-     est une question. -->
+Simulation en chirurgie cardio thoracique
 
 **Pertinence clinique :**
-<!-- Quelle décision cette recherche doit éclairer, et pour qui. Deux ou
-     trois phrases. Ce n'est pas un paragraphe sur l'importance générale
-     du sujet : c'est ce qui change selon la réponse trouvée. -->
-
+Aider un patient à stimuler sa cage thoracique
 
 ## 2. Analyse en concepts
-
-<!-- Ici, le raisonnement seulement, en français courant. Les termes
-     eux-mêmes — descripteurs, mots-clés, troncatures, champs — vivent
-     en section 3, dans l'historique : les écrire deux fois n'ajoute
-     rien, et hors d'un bloc de code leurs symboles se perdent.
-
-     Ce que l'historique ne peut pas dire, c'est pourquoi. C'est ce que
-     cette section demande.
-
-     Un bloc par concept. Dupliquez-le autant de fois que nécessaire et
-     renumérotez. -->
+bla-bla
 
 ### Concept 1 —
 
 - **Portée retenue :**
-  <!-- Ce que le concept inclut, et surtout ce qu'il exclut. Une
-       frontière mal posée se paie plus tard, en bruit ou en silence. -->
+bla-bla 
 - **Explode :** oui / non — pourquoi :
-  <!-- Pour chaque descripteur où la question se pose. Exploser ramène
-       tous les termes plus spécifiques : c'est un choix d'exhaustivité,
-       pas un réflexe. -->
+bla-bla
 - **Choix du vocabulaire :**
-  <!-- Pourquoi ces descripteurs plutôt que d'autres. Pourquoi ces
-       mots-clés en plus du vocabulaire contrôlé. Pourquoi ces champs
-       d'interrogation. -->
+bla-bla
 
 ### Concept 2 —
 
-- **Portée retenue :**
-- **Explode :** oui / non — pourquoi :
-- **Choix du vocabulaire :**
+- **Portée retenue :** bla-bla 
+- **Explode :** oui pourquoi : bla-bla
+- **Choix du vocabulaire :** bla-bla
 
 
 ## 3. Stratégies exécutées
 
-<!-- Une section par base interrogée. C'est la partie qui rend votre
-     travail reproductible : quelqu'un doit pouvoir rejouer votre
-     recherche à partir de ces seules lignes.
-
-     L'historique va dans un bloc de code, numéroté ligne par ligne,
-     avec le décompte de chaque ligne. Nommez vos blocs de concepts
-     entre crochets, comme le fait la convention professionnelle. -->
+bla-bla
 
 ### Base 1 —
 
-<!-- Le nom exact, le segment et la couverture, tels qu'affichés par la
-     plateforme. Exemple : Ovid MEDLINE(R) ALL <1946 au 28 mai 2025> -->
+bla-bla
 
-- **Plateforme et interface :** <!-- Ovid, EBSCO, interface native… -->
-- **Mode d'interrogation :** <!-- Advanced ou Basic, chez Ovid -->
-- **Date d'exécution :** <!-- format AAAA-MM-JJ, tirets compris -->
+- **Plateforme et interface :** Ovid
+- **Mode d'interrogation :** Advanced + Basic
+- **Date d'exécution :** 2022-06-22
 
 **Historique de recherche**
 
