@@ -103,14 +103,22 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          if git diff --quiet -- equipes/; then
-            echo "Les fichiers déposés sont identiques à ceux du dépôt : rien à soumettre."
+          # « git add » AVANT le test. « git diff » seul compare l'arbre de
+          # travail à l'index : les fichiers non suivis n'y figurent pas, et
+          # des dossiers d'équipe fraîchement créés sont tous non suivis.
+          # Le test passait donc pour « rien à soumettre », l'exécution
+          # finissait en vert, et aucune pull request n'était créée.
+          git add -A equipes/
+
+          if git diff --cached --quiet -- equipes/; then
+            echo "Rien à soumettre : les fichiers sont identiques à ceux du repository."
             exit 0
           fi
 
+          echo "$(git diff --cached --name-only -- equipes/ | wc -l) fichier(s) à soumettre."
+
           branche="deploiement-gabarit-$(date +%Y%m%d-%H%M)"
           git checkout -b "$branche"
-          git add equipes/
           git commit -m "Déploiement du gabarit dans les dossiers d'équipe"
           git push -u origin "$branche"
 
