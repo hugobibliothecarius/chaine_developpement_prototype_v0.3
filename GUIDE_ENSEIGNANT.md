@@ -44,6 +44,28 @@ réception que pour la leur.
 
 ---
 
+## Ce que le contrôle automatique ne voit pas
+
+Le *check* attrape les renseignements personnels — matricules, courriels,
+téléphones. Il ne juge pas le contenu : ça, c'est votre travail. Et il y a une
+chose précise à surveiller, parce qu'elle **passe au vert sans rien signaler**.
+
+**La syntaxe écrite hors du bloc de code.** Les équations et les descripteurs
+vont dans le bloc de code de la section 3, et nulle part ailleurs. Si une
+équipe en recopie dans le texte courant, l'affichage sur GitHub reste
+parfaitement correct — mais le document final perd les symboles. `diabet$`
+devient `diabet`, et `diabet*, diabetic*` sort en italique sans ses
+astérisques.
+
+Autrement dit : ce que vous évaluez disparaît du seul document archivé, et
+rien ne vous prévient. Si vous voyez une équation ou un descripteur dans le
+texte courant, demandez le déplacement avec **Request changes**.
+
+C'est la seule vérification de fond que l'automatisation ne peut pas faire à
+votre place.
+
+---
+
 ## Conclure
 
 Cliquez sur **Submit review**, en haut à droite. Vous avez trois choix :
