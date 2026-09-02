@@ -1,0 +1,353 @@
+# .github/workflows/controle-et-documents.yml
+#
+# Deux jobs.
+#
+# 1. « verification » — sur chaque pull request, sans exception. Refuse les
+#    renseignements personnels et signale les équipes absentes de equipes.yml.
+#    ⚠ Le nom « verification » est inscrit dans « Require status checks to
+#    pass » du ruleset. NE LE RENOMMEZ PAS sans changer le ruleset au même
+#    moment : GitHub attendrait un contrôle qui ne rapporte jamais, et toute
+#    pull request resterait bloquée indéfiniment. Ce nom ne doit pas non plus
+#    être filtré par « paths ». Une pull request hors
+#    périmètre n'exécuterait pas le contrôle, et resterait bloquée pour
+#    toujours sur un contrôle requis qui ne rapporte jamais.
+#
+# 2. « document » — après la fusion. Produit un PDF par équipe.
+#
+# Toutes les métadonnées viennent de equipes.yml, jamais du fichier étudiant :
+# titre, cours, établissement, auteurs, licence. La date est celle du dernier
+# enregistrement de l'équipe, lue dans l'historique Git.
+#
+#   equipes/equipe-01/strategie_recherche.md
+#     → equipe-01_strategie-de-recherche.pdf              (page titre : « Équipe 01 »)
+#     → equipe-01_tremblay-nguyen-cote_…pdf               (équipe ayant demandé ses noms)
+#
+# Les étudiants n'écrivent aucune métadonnée. Ils rédigent, c'est tout.
+
+name: Contrôle des remises et production des PDF
+
+on:
+  pull_request:
+    # Aucun filtre « paths » ici, volontairement : voir l'en-tête.
+  push:
+    branches: [main]
+    paths:
+      - 'equipes/**'
+      - 'equipes.yml'
+      - '.github/workflows/controle-et-documents.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+
+  # ─────────────────────────────────────────────────────────────────────
+  # 1. Garde-fou
+  # ─────────────────────────────────────────────────────────────────────
+  verification:
+    name: verification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Renseignements personnels
+        run: |
+          set -uo pipefail
+          shopt -s globstar nullglob
+
+          fichiers=(equipes/**/*.md)
+          if [ ${#fichiers[@]} -eq 0 ]; then
+            echo "::error::Aucun fichier trouvé sous equipes/ — arborescence inattendue."
+            exit 1
+          fi
+          echo "Fichiers analysés : ${#fichiers[@]}"
+
+          erreurs=0
+
+          # Les identifiants bibliographiques sont neutralisés avant l'examen
+          # des matricules. Un PMID fait huit chiffres, exactement comme un
+          # matricule : seule l'étiquette les distingue. Même collision avec le
+          # préfixe DOI de Cochrane (10.1002/14651858…) et avec les chiffres
+          # d'un lien PubMed. Sans étiquette, une suite de huit chiffres reste
+          # refusée — c'est le comportement voulu.
+          neutraliser() {
+            sed -E \
+              -e 's@\b(PMCID|PMID)[[:space:]]*:?[[:space:]]*(PMC)?[0-9]+@[identifiant]@gI' \
+              -e 's@\b10\.[0-9]{4,9}/[^[:space:]]+@[doi]@g' \
+              -e 's@https?://[^[:space:]]+@[url]@g' \
+              "$1"
+          }
+
+          echo "── Matricules (suites de 8 chiffres) ──"
+          suspects=""
+          for f in "${fichiers[@]}"; do
+            lignes=$(neutraliser "$f" | grep -nE '\b[0-9]{8}\b') || true
+            if [ -n "$lignes" ]; then
+              suspects+=$(printf '%s\n' "$lignes" | sed "s|^|$f:|")$'\n'
+            fi
+          done
+          if [ -n "$suspects" ]; then
+            printf '%s' "$suspects"
+            echo "::error::Suite de 8 chiffres détectée. Matricule : à retirer. Date : écrivez-la 2026-09-15. PMID : faites-le précéder de « PMID : »."
+            erreurs=1
+          fi
+
+          echo "── Adresses courriel ──"
+          if grep -nEHi '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}' "${fichiers[@]}"; then
+            echo "::error::Adresse courriel détectée. Le dépôt est public : aucune adresse ne doit y figurer."
+            erreurs=1
+          fi
+
+          echo "── Numéros de téléphone ──"
+          if grep -nEH '(\+1[ .-]?)?\(?[0-9]{3}\)?[ .-][0-9]{3}[ .-][0-9]{4}' "${fichiers[@]}"; then
+            echo "::error::Numéro de téléphone détecté."
+            erreurs=1
+          fi
+
+          if [ "$erreurs" -ne 0 ]; then
+            echo "::error::Fusion bloquée. Retirez ce qui est signalé ci-dessus, puis enregistrez de nouveau sur la même branche : ce contrôle repartira tout seul."
+            exit 1
+          fi
+
+          echo "✓ Aucun renseignement personnel détecté."
+
+      - name: Cohérence de equipes.yml
+        run: |
+          python3 - <<'PY'
+          import sys, glob, os
+          try:
+              import yaml
+          except ImportError:
+              print("::warning::PyYAML absent, contrôle ignoré.")
+              sys.exit(0)
+
+          if not os.path.exists('equipes.yml'):
+              print("::warning::equipes.yml absent — les PDF sortiront sans titre ni auteurs.")
+              sys.exit(0)
+
+          cfg = yaml.safe_load(open('equipes.yml', encoding='utf-8')) or {}
+          roster = cfg.get('equipes') or {}
+          mode = str(cfg.get('auteurs', 'equipe')).strip().lower()
+          dossiers = sorted(os.path.basename(d) for d in glob.glob('equipes/*') if os.path.isdir(d))
+
+          def conf_de(v):
+              if isinstance(v, dict):  return v
+              if isinstance(v, list):  return {'membres': v}
+              return {}
+
+          for d in dossiers:
+              if d not in roster:
+                  print(f"::warning::L'équipe {d} n'est pas déclarée dans equipes.yml.")
+                  continue
+              if mode == 'membres':
+                  membres = conf_de(roster[d]).get('membres') or []
+                  if any('Nom, Prénom' in str(m) for m in membres):
+                      print(f"::warning::L'équipe {d} contient des noms d'exemple dans equipes.yml — son PDF signera « Équipe {d.split('-')[-1]} ».")
+
+          orphelins = [e for e in roster if e not in dossiers]
+          if orphelins:
+              print(f"::warning::Déclarées dans equipes.yml sans dossier : {', '.join(orphelins)}")
+
+          print(f"✓ {len(dossiers)} dossiers, {len(roster)} équipes déclarées, mode auteurs « {mode} ».")
+          PY
+
+  # ─────────────────────────────────────────────────────────────────────
+  # 2. Production des PDF
+  # ─────────────────────────────────────────────────────────────────────
+  document:
+    name: Production des PDF
+    needs: verification
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write        # nécessaire pour publier la release ; le reste du fichier reste en lecture
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0        # historique complet : nécessaire pour dater chaque travail
+
+      - name: Installer pandoc et LaTeX
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            pandoc texlive-xetex texlive-fonts-recommended \
+            texlive-lang-french lmodern
+          python3 -c "import yaml" 2>/dev/null || pip install --quiet pyyaml
+
+      - name: Préparer les métadonnées
+        run: |
+          python3 - <<'PY'
+          import os, glob, re, subprocess, unicodedata, yaml, pathlib
+
+          cfg    = yaml.safe_load(open('equipes.yml', encoding='utf-8')) or {}
+          roster = cfg.get('equipes') or {}
+          titre  = cfg.get('titre', 'Stratégie de recherche')
+          cours  = cfg.get('cours', '')
+          etab   = cfg.get('etablissement', '')
+          lic    = cfg.get('licence', 'CC BY 4.0')
+          mode   = str(cfg.get('auteurs', 'equipe')).strip().lower()
+
+          def slug(s):
+              s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode()
+              return re.sub(r'[^A-Za-z0-9]+', '-', s).strip('-').lower()
+
+          def famille(nom):
+              nom = str(nom).strip()
+              return nom.split(',')[0].strip() if ',' in nom else nom.split()[-1]
+
+          def conf_de(v):
+              if isinstance(v, dict):  return v
+              if isinstance(v, list):  return {'membres': v}
+              return {}
+
+          pathlib.Path('meta').mkdir(exist_ok=True)
+          pathlib.Path('paquet').mkdir(exist_ok=True)
+          lignes = []
+
+          for f in sorted(glob.glob('equipes/*/strategie_recherche.md')):
+              equipe = os.path.basename(os.path.dirname(f))
+              conf   = conf_de(roster.get(equipe))
+              numero = equipe.split('-')[-1]
+
+              # Titre propre à l'équipe s'il est renseigné, sinon titre général.
+              # Indispensable pour Papyrus : chaque notice a besoin d'un titre distinct.
+              titre_equipe = str(conf.get('titre') or titre)
+
+              # Les noms ne sont lus que si le mode les autorise. Une équipe sans
+              # « membres » signe « Équipe NN » : c'est le cas normal, pas une
+              # erreur. Les noms s'ajoutent équipe par équipe, au moment du
+              # dépôt dans Papyrus, à la demande de l'équipe concernée.
+              membres = []
+              if mode == 'membres':
+                  membres = [str(m) for m in (conf.get('membres') or [])
+                             if str(m).strip() and 'Nom, Prénom' not in str(m)]
+
+              if membres:
+                  auteurs = membres
+                  segment = '_' + '-'.join(slug(famille(m)) for m in membres)
+              else:
+                  auteurs = [f'Équipe {numero}']
+                  segment = ''
+
+              # Date du dernier enregistrement de ce fichier précis
+              date = subprocess.run(
+                  ['git', 'log', '-1', '--format=%ad', '--date=short', '--', f],
+                  capture_output=True, text=True).stdout.strip() or ''
+
+              sous_titre = ' — '.join(x for x in (cours, etab) if x)
+
+              meta = {
+                  'title': titre_equipe,
+                  'subtitle': sous_titre,
+                  'author': auteurs,
+                  'date': date,
+                  'lang': 'fr',
+                  'rights': lic,
+                  'colorlinks': True,
+              }
+              mf = f'meta/{equipe}.yml'
+              with open(mf, 'w', encoding='utf-8') as h:
+                  yaml.safe_dump(meta, h, allow_unicode=True, sort_keys=False)
+
+              sortie = f'paquet/{equipe}{segment}_{slug(titre)}.pdf'
+              lignes.append(f'{f}\t{mf}\t{sortie}')
+
+          pathlib.Path('manifeste.tsv').write_text('\n'.join(lignes) + '\n', encoding='utf-8')
+          print(f'{len(lignes)} document(s) à produire.')
+          PY
+
+      - name: Construire les PDF
+        run: |
+          set -uo pipefail
+          echec=0
+          while IFS=$'\t' read -r source meta sortie; do
+            [ -z "$source" ] && continue
+            # markdown-tex_math_dollars : sans cela, la troncature Ovid
+            # « diabet$, insulin$ » est lue comme une formule mathématique et
+            # les deux symboles disparaissent du PDF. Les astérisques d'Embase
+            # et de PubMed sont protégées par les accents graves du gabarit —
+            # l'emphase Markdown ne se désactive pas.
+            if pandoc "$source" \
+                 --from=markdown-tex_math_dollars \
+                 --metadata-file="$meta" \
+                 --pdf-engine=xelatex \
+                 --standalone \
+                 -V geometry:margin=2.5cm \
+                 -o "$sortie"
+            then
+              echo "→ $sortie"
+            else
+              echo "::error file=$source::La conversion en PDF a échoué."
+              echec=1
+            fi
+          done < manifeste.tsv
+
+          if [ "$echec" -ne 0 ]; then exit 1; fi
+
+          echo
+          echo "PDF produits :"
+          ls -1 paquet/
+
+      # L'artifact reste : c'est le filet de sécurité si la publication de la
+      # release échoue, et l'accès rapide pour l'administrateur. Mais ce n'est
+      # pas la voie de livraison — voir l'étape suivante.
+      - uses: actions/upload-artifact@v6
+        with:
+          name: documents-finaux
+          path: paquet/
+          retention-days: 90
+          if-no-files-found: error
+
+      # ─────────────────────────────────────────────────────────────────
+      # Livraison : une release roulante, « documents-finaux »
+      #
+      # C'est ici que l'enseignante récupère les PDF : encadré « Releases »
+      # de la page d'accueil du repository, un clic, aucun détour par
+      # l'onglet Actions. Et une release n'expire pas, contrairement aux
+      # artifacts, plafonnés à 90 jours sur un repository public.
+      #
+      # La release est supprimée puis recréée à chaque fois, plutôt que
+      # complétée : c'est la seule façon de garantir qu'elle contient
+      # exactement les vingt documents courants. Un simple téléversement
+      # laisserait traîner les anciens noms de fichiers — ceux d'avant le
+      # passage en « auteurs: membres », par exemple.
+      # ─────────────────────────────────────────────────────────────────
+      - name: Publier les documents dans la release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -uo pipefail
+          shopt -s nullglob
+
+          pdfs=(paquet/*.pdf)
+          if [ ${#pdfs[@]} -eq 0 ]; then
+            echo "::error::Aucun PDF à publier."
+            exit 1
+          fi
+
+          # Les notes passent par un fichier : une ligne non indentée dans un
+          # bloc « run: | » terminerait le bloc.
+          printf '%s\n' \
+            'Documents finaux, produits automatiquement à la fusion de chaque remise.' \
+            '' \
+            'Un PDF par équipe, page titre comprise.' \
+            '' \
+            "Dernière mise à jour : $(date -u '+%Y-%m-%d à %H:%M UTC')" \
+            "Documents : ${#pdfs[@]}" \
+            '' \
+            'Contrairement aux artifacts de l'"'"'onglet Actions, ces fichiers n'"'"'expirent pas.' \
+            > notes-release.md
+
+          # Supprimer avant de recréer. « || true » : la première exécution
+          # n'a rien à supprimer, et GitHub Actions ajoute « set -e ».
+          gh release delete documents-finaux --yes --cleanup-tag 2>/dev/null || true
+
+          gh release create documents-finaux "${pdfs[@]}" \
+            --title "Documents finaux — un PDF par équipe" \
+            --notes-file notes-release.md \
+            --target "$GITHUB_SHA"
+
+          rm -f notes-release.md
+          echo "Release « documents-finaux » publiée : ${#pdfs[@]} document(s)."
+          echo "→ $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/tag/documents-finaux"
