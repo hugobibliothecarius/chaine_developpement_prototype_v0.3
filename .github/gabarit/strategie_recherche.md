@@ -4,7 +4,12 @@
      automatiquement à la page titre du PDF.
 
      Les blocs comme celui-ci sont des consignes. Ils n'apparaissent ni
-     sur GitHub ni dans le PDF. Laissez-les ou supprimez-les.
+     sur GitHub ni dans le PDF.
+
+     LAISSEZ-LES EN PLACE. Ils ne coûtent rien — personne ne les voit —
+     et les effacer alourdit énormément ce que l'enseignante doit relire :
+     quarante lignes de consigne supprimées pour quinze lignes de travail.
+     Écrivez simplement en dessous.
 
      DEUX RÈGLES DE SAISIE, ET C'EST TOUT :
 
@@ -17,6 +22,11 @@
         Ailleurs qu'entre ces accents, n'écrivez aucune syntaxe. Les
         descripteurs et les équations ne se recopient pas dans le
         texte courant : ils vivent dans l'historique, et on y renvoie.
+
+        Collez l'historique DIRECTEMENT de la base de données vers le
+        bloc. Word et Google Docs remplacent les guillemets droits par
+        des guillemets courbes, et yr="2000 -Current" devient une
+        requête invalide sans que rien ne vous le signale.
 
      2. N'écrivez jamais huit chiffres de suite. Mettez des tirets dans
         les dates. Séparez les grands décomptes par une espace :
