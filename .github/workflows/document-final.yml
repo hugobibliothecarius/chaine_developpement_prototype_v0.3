@@ -2,9 +2,12 @@
 #
 # Deux jobs.
 #
-# 1. « verification » — sur chaque pull request. Refuse les renseignements
-#    personnels et signale les équipes absentes de equipes.yml.
-#    Ce nom est inscrit dans « Require status checks to pass » du ruleset.
+# 1. « verification » — sur chaque pull request, sans exception. Refuse les
+#    renseignements personnels et signale les équipes absentes de equipes.yml.
+#    Ce nom est inscrit dans « Require status checks to pass » du ruleset : il
+#    ne doit donc jamais être filtré par « paths ». Une pull request hors
+#    périmètre n'exécuterait pas le contrôle, et resterait bloquée pour
+#    toujours sur un contrôle requis qui ne rapporte jamais.
 #
 # 2. « document » — après la fusion. Produit un PDF par équipe.
 #
@@ -13,7 +16,8 @@
 # enregistrement de l'équipe, lue dans l'historique Git.
 #
 #   equipes/equipe-01/strategie_recherche.md
-#     → equipe-01_tremblay-nguyen-cote_strategie-de-recherche.pdf
+#     → equipe-01_strategie-de-recherche.pdf              (page titre : « Équipe 01 »)
+#     → equipe-01_tremblay-nguyen-cote_…pdf               (équipe ayant demandé ses noms)
 #
 # Les étudiants n'écrivent aucune métadonnée. Ils rédigent, c'est tout.
 
@@ -21,10 +25,7 @@ name: document-final
 
 on:
   pull_request:
-    paths:
-      - 'equipes/**'
-      - 'equipes.yml'
-      - '.github/workflows/document-final.yml'
+    # Aucun filtre « paths » ici, volontairement : voir l'en-tête.
   push:
     branches: [main]
     paths:
@@ -61,9 +62,31 @@ jobs:
 
           erreurs=0
 
+          # Les identifiants bibliographiques sont neutralisés avant l'examen
+          # des matricules. Un PMID fait huit chiffres, exactement comme un
+          # matricule : seule l'étiquette les distingue. Même collision avec le
+          # préfixe DOI de Cochrane (10.1002/14651858…) et avec les chiffres
+          # d'un lien PubMed. Sans étiquette, une suite de huit chiffres reste
+          # refusée — c'est le comportement voulu.
+          neutraliser() {
+            sed -E \
+              -e 's@\b(PMCID|PMID)[[:space:]]*:?[[:space:]]*(PMC)?[0-9]+@[identifiant]@gI' \
+              -e 's@\b10\.[0-9]{4,9}/[^[:space:]]+@[doi]@g' \
+              -e 's@https?://[^[:space:]]+@[url]@g' \
+              "$1"
+          }
+
           echo "── Matricules (suites de 8 chiffres) ──"
-          if grep -nEH '\b[0-9]{8}\b' "${fichiers[@]}"; then
-            echo "::error::Suite de 8 chiffres détectée. S'il s'agit d'un matricule, retirez-le. S'il s'agit d'une date, écrivez-la sous la forme 2026-09-15."
+          suspects=""
+          for f in "${fichiers[@]}"; do
+            lignes=$(neutraliser "$f" | grep -nE '\b[0-9]{8}\b') || true
+            if [ -n "$lignes" ]; then
+              suspects+=$(printf '%s\n' "$lignes" | sed "s|^|$f:|")$'\n'
+            fi
+          done
+          if [ -n "$suspects" ]; then
+            printf '%s' "$suspects"
+            echo "::error::Suite de 8 chiffres détectée. Matricule : à retirer. Date : écrivez-la 2026-09-15. PMID : faites-le précéder de « PMID : »."
             erreurs=1
           fi
 
@@ -97,25 +120,33 @@ jobs:
               sys.exit(0)
 
           if not os.path.exists('equipes.yml'):
-              print("::warning::equipes.yml absent — les PDF sortiront sans auteurs.")
+              print("::warning::equipes.yml absent — les PDF sortiront sans titre ni auteurs.")
               sys.exit(0)
 
           cfg = yaml.safe_load(open('equipes.yml', encoding='utf-8')) or {}
           roster = cfg.get('equipes') or {}
+          mode = str(cfg.get('auteurs', 'equipe')).strip().lower()
           dossiers = sorted(os.path.basename(d) for d in glob.glob('equipes/*') if os.path.isdir(d))
 
+          def conf_de(v):
+              if isinstance(v, dict):  return v
+              if isinstance(v, list):  return {'membres': v}
+              return {}
+
           for d in dossiers:
-              membres = roster.get(d)
-              if not membres:
-                  print(f"::warning::L'équipe {d} n'est pas dans equipes.yml — son PDF sortira en « auteurs-non-indiques ».")
-              elif any('Nom, Prénom' in str(m) for m in membres):
-                  print(f"::warning::L'équipe {d} contient encore des noms d'exemple dans equipes.yml.")
+              if d not in roster:
+                  print(f"::warning::L'équipe {d} n'est pas déclarée dans equipes.yml.")
+                  continue
+              if mode == 'membres':
+                  membres = conf_de(roster[d]).get('membres') or []
+                  if any('Nom, Prénom' in str(m) for m in membres):
+                      print(f"::warning::L'équipe {d} contient des noms d'exemple dans equipes.yml — son PDF signera « Équipe {d.split('-')[-1]} ».")
 
           orphelins = [e for e in roster if e not in dossiers]
           if orphelins:
               print(f"::warning::Déclarées dans equipes.yml sans dossier : {', '.join(orphelins)}")
 
-          print(f"✓ {len(dossiers)} dossiers, {len(roster)} équipes déclarées.")
+          print(f"✓ {len(dossiers)} dossiers, {len(roster)} équipes déclarées, mode auteurs « {mode} ».")
           PY
 
   # ─────────────────────────────────────────────────────────────────────
@@ -144,12 +175,13 @@ jobs:
           python3 - <<'PY'
           import os, glob, re, subprocess, unicodedata, yaml, pathlib
 
-          cfg = yaml.safe_load(open('equipes.yml', encoding='utf-8')) or {}
+          cfg    = yaml.safe_load(open('equipes.yml', encoding='utf-8')) or {}
           roster = cfg.get('equipes') or {}
           titre  = cfg.get('titre', 'Stratégie de recherche')
           cours  = cfg.get('cours', '')
           etab   = cfg.get('etablissement', '')
           lic    = cfg.get('licence', 'CC BY 4.0')
+          mode   = str(cfg.get('auteurs', 'equipe')).strip().lower()
 
           def slug(s):
               s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode()
@@ -159,23 +191,39 @@ jobs:
               nom = str(nom).strip()
               return nom.split(',')[0].strip() if ',' in nom else nom.split()[-1]
 
+          def conf_de(v):
+              if isinstance(v, dict):  return v
+              if isinstance(v, list):  return {'membres': v}
+              return {}
+
           pathlib.Path('meta').mkdir(exist_ok=True)
           pathlib.Path('paquet').mkdir(exist_ok=True)
           lignes = []
 
           for f in sorted(glob.glob('equipes/*/strategie_recherche.md')):
               equipe = os.path.basename(os.path.dirname(f))
-              membres = [str(m) for m in (roster.get(equipe) or [])
-                         if str(m).strip() and 'Nom, Prénom' not in str(m)]
+              conf   = conf_de(roster.get(equipe))
+              numero = equipe.split('-')[-1]
+
+              # Titre propre à l'équipe s'il est renseigné, sinon titre général.
+              # Indispensable pour Papyrus : chaque notice a besoin d'un titre distinct.
+              titre_equipe = str(conf.get('titre') or titre)
+
+              # Les noms ne sont lus que si le mode les autorise. Une équipe sans
+              # « membres » signe « Équipe NN » : c'est le cas normal, pas une
+              # erreur. Les noms s'ajoutent équipe par équipe, au moment du
+              # dépôt dans Papyrus, à la demande de l'équipe concernée.
+              membres = []
+              if mode == 'membres':
+                  membres = [str(m) for m in (conf.get('membres') or [])
+                             if str(m).strip() and 'Nom, Prénom' not in str(m)]
 
               if membres:
-                  noms = '-'.join(slug(famille(m)) for m in membres)
+                  auteurs = membres
+                  segment = '_' + '-'.join(slug(famille(m)) for m in membres)
               else:
-                  noms = 'auteurs-non-indiques'
-                  raison = (f"{equipe} est absente de equipes.yml"
-                            if equipe not in roster
-                            else f"les membres de {equipe} sont encore « Nom, Prénom » dans equipes.yml")
-                  print(f"::warning file={f}::{raison} — PDF nommé « {noms} ».")
+                  auteurs = [f'Équipe {numero}']
+                  segment = ''
 
               # Date du dernier enregistrement de ce fichier précis
               date = subprocess.run(
@@ -185,9 +233,9 @@ jobs:
               sous_titre = ' — '.join(x for x in (cours, etab) if x)
 
               meta = {
-                  'title': titre,
+                  'title': titre_equipe,
                   'subtitle': sous_titre,
-                  'author': membres or ['Auteurs non indiqués'],
+                  'author': auteurs,
                   'date': date,
                   'lang': 'fr',
                   'rights': lic,
@@ -197,7 +245,7 @@ jobs:
               with open(mf, 'w', encoding='utf-8') as h:
                   yaml.safe_dump(meta, h, allow_unicode=True, sort_keys=False)
 
-              sortie = f'paquet/{equipe}_{noms}_{slug(titre)}.pdf'
+              sortie = f'paquet/{equipe}{segment}_{slug(titre)}.pdf'
               lignes.append(f'{f}\t{mf}\t{sortie}')
 
           pathlib.Path('manifeste.tsv').write_text('\n'.join(lignes) + '\n', encoding='utf-8')
@@ -210,7 +258,13 @@ jobs:
           echec=0
           while IFS=$'\t' read -r source meta sortie; do
             [ -z "$source" ] && continue
+            # markdown-tex_math_dollars : sans cela, la troncature Ovid
+            # « diabet$, insulin$ » est lue comme une formule mathématique et
+            # les deux symboles disparaissent du PDF. Les astérisques d'Embase
+            # et de PubMed sont protégées par les accents graves du gabarit —
+            # l'emphase Markdown ne se désactive pas.
             if pandoc "$source" \
+                 --from=markdown-tex_math_dollars \
                  --metadata-file="$meta" \
                  --pdf-engine=xelatex \
                  --standalone \
@@ -224,7 +278,7 @@ jobs:
             fi
           done < manifeste.tsv
 
-          [ "$echec" -ne 0 ] && exit 1
+          if [ "$echec" -ne 0 ]; then exit 1; fi
 
           echo
           echo "PDF produits :"
