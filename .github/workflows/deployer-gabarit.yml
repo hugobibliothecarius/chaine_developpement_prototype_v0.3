@@ -114,13 +114,23 @@ jobs:
           git commit -m "Déploiement du gabarit dans les dossiers d'équipe"
           git push -u origin "$branche"
 
+          # Le corps passe par un fichier : une ligne non indentée dans un
+          # bloc « run: | » le terminerait, et GitHub lirait la suite comme
+          # des clés YAML de premier niveau.
+          printf '%s\n' \
+            'Générée par le workflow **Déployer le gabarit**.' \
+            '' \
+            'Source : `.github/gabarit/strategie_recherche.md`' \
+            'Mode `ecraser` : `${{ inputs.ecraser }}`' \
+            '' \
+            'Vérifiez l'"'"'onglet **Files changed** avant de fusionner.' \
+            '' \
+            'En mode `ecraser: true`, cette pull request remplace le contenu des fichiers d'"'"'équipe — donc leur travail.' \
+            > corps-pr.md
+
           gh pr create \
             --title "Déploiement du gabarit dans les dossiers d'équipe" \
-            --body "Généré par le workflow **Déployer le gabarit**.
+            --body-file corps-pr.md
 
-Source : \`.github/gabarit/strategie_recherche.md\`
-Mode \`ecraser\` : \`${{ inputs.ecraser }}\`
-
-Vérifiez l'onglet **Files changed** avant de fusionner. En mode \`ecraser: true\`, cette pull request remplace le contenu des fichiers d'équipe."
-
+          rm -f corps-pr.md
           echo "Pull request ouverte sur la branche $branche."
