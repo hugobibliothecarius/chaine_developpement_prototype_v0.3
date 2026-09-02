@@ -6,17 +6,19 @@
      Les blocs comme celui-ci sont des consignes. Ils n'apparaissent ni
      sur GitHub ni dans le PDF. Laissez-les ou supprimez-les.
 
-     TROIS RÈGLES DE SAISIE, ET C'EST TOUT :
+     DEUX RÈGLES DE SAISIE, ET C'EST TOUT :
 
-     1. Tout ce qui est syntaxe d'interrogation va dans un bloc de code
-        — les trois accents graves ```. À l'intérieur, rien n'est
-        interprété : vos troncatures, astérisques, dièses et crochets
-        sortent tels quels. C'est là que va l'historique de recherche.
+     1. Toute syntaxe d'interrogation va dans un bloc de code — les
+        trois accents graves ```. Les blocs sont déjà en place, en
+        section 3. À l'intérieur, rien n'est interprété : vos
+        troncatures, astérisques, dièses, crochets et barres obliques
+        sortent exactement comme vous les avez écrits.
 
-     2. Dans les listes de la section 2, entourez les termes d'accents
-        graves simples. Les champs prévus en contiennent déjà.
+        Ailleurs qu'entre ces accents, n'écrivez aucune syntaxe. Les
+        descripteurs et les équations ne se recopient pas dans le
+        texte courant : ils vivent dans l'historique, et on y renvoie.
 
-     3. N'écrivez jamais huit chiffres de suite. Mettez des tirets dans
+     2. N'écrivez jamais huit chiffres de suite. Mettez des tirets dans
         les dates. Séparez les grands décomptes par une espace :
         écrivez 12 345 678, jamais collé. Un PMID passe s'il porte son
         étiquette.
@@ -27,61 +29,46 @@
 
 ## 1. Question de recherche
 
-<!-- Une stratégie de recherche existe toujours pour quelqu'un. Situez
-     la demande avant de formuler la question. -->
-
-**Contexte de la demande :**
-<!-- Le cas clinique ou le mandat. Aucun renseignement identifiant. -->
+<!-- Formulez la question en une ou deux phrases, puis justifiez sa
+     pertinence clinique en un court paragraphe. -->
 
 **Question :**
-<!-- Une ou deux phrases. -->
 
 **Pertinence clinique :**
-<!-- Un court paragraphe : pourquoi cette question mérite d'être posée. -->
-
-**Type de recherche visé :**
-<!-- Question ponctuelle, revue de portée, revue systématique… Ce choix
-     détermine l'exhaustivité attendue. -->
 
 
 ## 2. Analyse en concepts
 
-<!-- Un bloc par concept. Dupliquez-le autant de fois que nécessaire et
-     renumérotez.
+<!-- Ici, le raisonnement seulement, en français courant. Les termes
+     eux-mêmes — descripteurs, mots-clés, troncatures, champs — vivent
+     en section 3, dans l'historique : les écrire deux fois n'ajoute
+     rien, et hors d'un bloc de code leurs symboles se perdent.
 
-     Exemples de ce qui va entre accents graves :
-       Descripteurs   `exp Cardiac Surgical Procedures/`
-       Mots-clés      `cardiothoracic surgery`
-       Troncatures    `cardiothorac` suivi du symbole de la base
-       Champs         `.ti,ab,kf.` -->
+     Ce que l'historique ne peut pas dire, c'est pourquoi. C'est ce que
+     cette section demande.
+
+     Un bloc par concept. Dupliquez-le autant de fois que nécessaire et
+     renumérotez. -->
 
 ### Concept 1 —
 
-- **Portée retenue :** <!-- ce que le concept inclut, et ce qu'il exclut -->
-- **Vocabulaire contrôlé**
-    - Thésaurus et version : `remplacez ce texte, gardez les accents graves`
-    - Descripteurs : `remplacez ce texte, gardez les accents graves`
-    - Explode : oui / non — pourquoi :
-    - Qualificatifs employés : `remplacez ce texte, gardez les accents graves`
-- **Vocabulaire libre**
-    - Mots-clés : `remplacez ce texte, gardez les accents graves`
-    - Troncatures et variantes : `remplacez ce texte, gardez les accents graves`
-    - Champs interrogés : `remplacez ce texte, gardez les accents graves`
-    - Opérateurs de proximité : `remplacez ce texte, gardez les accents graves`
+- **Portée retenue :**
+  <!-- Ce que le concept inclut, et surtout ce qu'il exclut. Une
+       frontière mal posée se paie plus tard, en bruit ou en silence. -->
+- **Explode :** oui / non — pourquoi :
+  <!-- Pour chaque descripteur où la question se pose. Exploser ramène
+       tous les termes plus spécifiques : c'est un choix d'exhaustivité,
+       pas un réflexe. -->
+- **Choix du vocabulaire :**
+  <!-- Pourquoi ces descripteurs plutôt que d'autres. Pourquoi ces
+       mots-clés en plus du vocabulaire contrôlé. Pourquoi ces champs
+       d'interrogation. -->
 
 ### Concept 2 —
 
 - **Portée retenue :**
-- **Vocabulaire contrôlé**
-    - Thésaurus et version : `remplacez ce texte, gardez les accents graves`
-    - Descripteurs : `remplacez ce texte, gardez les accents graves`
-    - Explode : oui / non — pourquoi :
-    - Qualificatifs employés : `remplacez ce texte, gardez les accents graves`
-- **Vocabulaire libre**
-    - Mots-clés : `remplacez ce texte, gardez les accents graves`
-    - Troncatures et variantes : `remplacez ce texte, gardez les accents graves`
-    - Champs interrogés : `remplacez ce texte, gardez les accents graves`
-    - Opérateurs de proximité : `remplacez ce texte, gardez les accents graves`
+- **Explode :** oui / non — pourquoi :
+- **Choix du vocabulaire :**
 
 
 ## 3. Stratégies exécutées
@@ -127,9 +114,12 @@
 -->
 
 **Filtres appliqués :**
-<!-- Chaque filtre, avec sa justification. Ou : aucun, et pourquoi.
-     Un filtre de langue ou de date exclut des références : il se
-     justifie, il ne se subit pas. -->
+<!-- Renvoyez au numéro de la ligne de l'historique, et justifiez.
+     Par exemple : « ligne 8, années 2000 et suivantes — la simulation
+     haute fidélité n'existait pas avant ». Ou : aucun filtre, et
+     pourquoi. Un filtre de langue ou de date exclut des références :
+     il se justifie, il ne se subit pas.
+     Ne recopiez pas la syntaxe ici — elle est dans l'historique. -->
 
 **Légende des opérateurs employés**
 
