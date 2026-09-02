@@ -13,6 +13,49 @@ document final. Vous rédigez, c'est tout.
 
 ---
 
+## À lire avant de commencer : votre travail sera publié sous votre nom
+
+Ce n'est pas un devoir qui reste entre vous et l'enseignante. Prenez une minute
+pour lire ce qui suit — la suite en dépend.
+
+### Ce qui va se passer
+
+Vos noms figureront sur la page titre du document final, sous licence
+**Creative Commons Attribution 4.0**. Le *repository* est public : n'importe
+qui peut le consulter, aujourd'hui et plus tard. Les travaux retenus seront
+ensuite déposés dans **Papyrus**, le dépôt institutionnel de l'Université de
+Montréal, où ils recevront une adresse permanente et pourront être cités.
+
+Concrètement, la licence CC BY permet à quiconque de reprendre et d'adapter
+votre stratégie, y compris à des fins commerciales, **à condition de vous
+créditer**. C'est aussi pour ça que vos noms y sont : sans eux, personne ne
+saurait qui créditer.
+
+### C'est permanent
+
+Un *repository* Git conserve tout. Une fois vos noms enregistrés, **ils y
+restent**, même si :
+
+- la ligne est retirée du fichier plus tard ;
+- votre équipe décide finalement de ne pas déposer dans Papyrus ;
+- vous quittez le cours.
+
+Il n'y a pas de bouton pour effacer un enregistrement déjà publié. C'est la
+même raison qui rend le réglage de la section suivante urgent plutôt que
+facultatif.
+
+### Si vous ne le voulez pas
+
+**Parlez-en à l'enseignante avant de commencer à travailler.** Une voie de
+remise non publique existe : vous serez évalués sur le même travail, sans que
+votre nom soit publié. Vous n'avez pas à vous justifier, et ce choix n'a aucune
+incidence sur votre note.
+
+Le dire après coup ne réparera rien, et c'est la seule raison pour laquelle
+cette section est en tête de page.
+
+---
+
 ## Une seule fois, avant de commencer
 
 **Rendez votre adresse courriel privée.** Cliquez sur votre photo en haut à
@@ -20,8 +63,9 @@ droite → **Settings** → **Emails**, puis cochez **Keep my email addresses
 private**.
 
 Sans ce réglage, votre adresse personnelle apparaît publiquement dans
-l'historique du *repository*, et on ne peut plus corriger un *commit* déjà
-fait. Faites-le avant votre première contribution.
+l'historique du *repository* — et comme pour vos noms, on ne peut plus
+corriger un *commit* déjà fait. Faites-le **avant** votre première
+contribution : c'est le seul moment où c'est possible.
 
 ---
 
@@ -43,7 +87,12 @@ vous montre le rendu.
 ### 3. Rédiger
 
 Les blocs `<!-- ... -->` sont des consignes. Ils n'apparaissent ni sur GitHub
-ni dans le document final. Laissez-les, ils ne dérangent personne.
+ni dans le document final.
+
+**Laissez-les en place, écrivez en dessous.** Ils ne dérangent personne —
+personne ne les voit. Mais les effacer alourdit beaucoup la relecture de
+l'enseignante : elle verrait quarante lignes de consigne supprimées pour
+quinze lignes de votre travail, et devrait chercher les vôtres là-dedans.
 
 **Toute syntaxe d'interrogation va dans un bloc de code** — les trois accents
 graves ```` ``` ````, déjà en place dans la section 3 du gabarit. À
@@ -55,6 +104,20 @@ crochets et barres obliques sortent exactement comme vous les avez écrits.
 troncature d'Ovid et d'Embase disparaissent du document final, même s'ils
 s'affichent normalement sur GitHub. C'est exactement ce qui est évalué, alors
 ne le laissez pas au hasard.
+
+**Et ne faites pas passer votre historique par un traitement de texte.**
+Collez-le directement de la base de données vers le bloc de code. Word et
+Google Docs remplacent automatiquement les guillemets droits par des
+guillemets courbes : votre ligne
+
+```
+limit 7 to yr="2000 -Current"
+```
+
+deviendrait `yr=“2000 -Current”`, et la requête ne fonctionnerait plus. Le
+changement est invisible à l'œil, personne ne vous en avertira, et c'est votre
+équation qui serait fautive. Les sections en prose, elles, vous pouvez les
+brouillonner où vous voulez.
 
 Les descripteurs et les équations vivent dans l'historique, et le reste du
 document y renvoie par le numéro de ligne.
@@ -82,19 +145,37 @@ correcte en français.
 
 Cliquez sur **Commit changes…** en haut à droite. Dans la fenêtre :
 
-- **Commit message** : écrivez une courte description, par exemple
-  `Équipe 03 — concepts et équations`.
-- L'option **Commit directly to the `main` branch** est grisée. C'est normal,
-  elle doit l'être.
-- L'option **Create a new branch… and start a pull request** est déjà cochée.
-  **Laissez le nom proposé tel quel.**
+**Le message de *commit* devient le titre de votre remise.** Commencez-le par
+votre numéro d'équipe :
 
-Cliquez sur **Propose changes**.
+```
+Équipe 03 — concepts et équations
+```
+
+C'est par ce titre que l'enseignante vous retrouve dans sa liste. Effacez le
+texte que GitHub propose — « Update strategie_recherche.md » ne dit pas qui
+vous êtes, et sa file de correction en compterait vingt identiques.
+
+Pour le reste, ne changez rien : GitHub ne vous laisse pas écrire directement
+dans `main` — l'option est grisée, ou absente selon la version de l'interface —
+et la création d'une branche est déjà choisie. **Laissez le nom proposé tel
+quel.**
+
+Validez. Le bouton s'appelle **Commit changes** ou **Propose changes** selon la
+version ; les deux font la même chose.
 
 ### 5. Ouvrir la pull request
 
-Un formulaire apparaît, déjà rempli en partie. Ajoutez l'identification de
-votre équipe, puis cliquez sur **Create pull request**.
+Un formulaire apparaît, déjà rempli en partie. Complétez l'identification de
+votre équipe — le numéro d'équipe, le travail, et vos **identifiants GitHub**,
+pas vos noms. Puis cliquez sur **Create pull request**.
+
+> **Pourquoi des identifiants ici, et vos noms sur le document.** Les
+> identifiants servent à vous mentionner dans la discussion. Vos noms, eux,
+> sont déjà inscrits par l'administrateur du dépôt et figurent sur la page
+> titre du document final, sous licence CC BY — c'est votre travail, il est
+> publié, cité et déposé dans Papyrus sous votre signature. Une attribution
+> anonyme n'aurait aucune valeur sous cette licence.
 
 **C'est votre remise.** Cochez ensuite les cases de la grille : elles ne
 deviennent cliquables qu'une fois la *pull request* créée.
@@ -145,6 +226,17 @@ ligne. C'est ce que GitHub appelle une *review*.
 
 - **Elle demande des corrections** → modifiez votre fichier comme ci-dessus.
   Ses commentaires restent attachés à la discussion.
+
+Deux façons de corriger, selon ce qu'elle a écrit.
+
+**Si sa remarque contient une suggestion** — un encadré qui montre la ligne
+corrigée — vous n'avez rien à éditer. Un bouton sous l'encadré applique sa
+correction directement. C'est le cas le plus fréquent pour une faute de
+syntaxe.
+
+**Sinon**, il faut modifier le fichier. Un détail pratique : l'éditeur
+n'affiche pas les commentaires. Ouvrez donc votre remise dans un onglet, pour
+lire les annotations dans **Files changed**, et l'éditeur dans un second.
 - **Elle accepte le travail** → elle fait le *merge* de votre *pull request*.
   Votre travail rejoint le dossier de l'équipe sur `main`, et le document final
   se produit automatiquement, page titre comprise.
