@@ -17,108 +17,79 @@ etablissement: "Université de Montréal"
 session: "Automne 2026"
 licence: "CC BY 4.0"
 
-# Les deux conventions de nom fonctionnent, même mélangées :
-#   - Tremblay, Léa      → nom de famille = ce qui précède la virgule
-#   - Léa Tremblay       → nom de famille = le dernier mot
+
+# ─── Qui signe la page titre ─────────────────────────────────────────────
+#
+#   equipe   → « Équipe 01 » partout. Tout « membres » inscrit plus bas est
+#              ignoré. C'est le réglage à garder pendant la session.
+#   membres  → une équipe qui a des « membres » signe de leurs noms ; une
+#              équipe qui n'en a pas signe « Équipe NN ». C'est le réglage du
+#              moment où on dépose dans Papyrus.
+#
+# ⚠ Le repository est public et l'historique Git est définitif : un nom
+#   enregistré une fois ne s'efface plus, même si on retire la ligne après.
+#
+#   Mettre soixante noms ici en début de session, avant que personne ait
+#   consenti, revient à publier la liste de classe. L'inscription à un cours
+#   est un renseignement personnel au sens de la Loi 25, et ça annule aussi la
+#   protection que donnent les comptes pseudonymes.
+#
+#   Une équipe qui décide de déposer dans Papyrus, elle, publie déjà sous son
+#   nom. Ajouter ses membres ici à ce moment-là, à sa demande, ne rend public
+#   que ce qu'elle a elle-même choisi de publier. C'est aussi ce qui permet au
+#   PDF déposé de porter ses auteurs : sans ça, la licence CC BY n'aurait
+#   personne à créditer.
+#
+#   Marche à suivre en fin de session : passez à « membres », ajoutez les noms
+#   des seules équipes qui déposent, relancez le workflow et récupérez les PDF.
+#   Les autres équipes continuent de signer « Équipe NN ».
+#
+auteurs: equipe
+
+
+# ─── Les équipes ─────────────────────────────────────────────────────────
+#
+# Trois formes acceptées, mêlées librement :
+#
+#   equipe-01:                        ← rien à déclarer
+#
+#   equipe-02:
+#     titre: "Antibioprophylaxie en chirurgie orthopédique"
+#
+#   equipe-03:
+#     titre: "…"
+#     membres:
+#       - Tremblay, Léa
+#       - Samuel Côté
+#
+# « titre » remplace le titre général sur la page titre de cette équipe.
+# Renseignez-le pour les travaux destinés à Papyrus, où chaque notice a besoin
+# d'un titre distinct. Laissé vide, le titre général s'applique.
+#
+# « membres » n'est lu que si auteurs: membres. Deux conventions de nom
+# fonctionnent, même mélangées :
+#   - Tremblay, Léa   → nom de famille = ce qui précède la virgule
+#   - Léa Tremblay    → nom de famille = le dernier mot
 
 equipes:
 
   equipe-01:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-02:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-03:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-04:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-05:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-06:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-07:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-08:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-09:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-10:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-11:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-12:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-13:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-14:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-15:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-16:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-17:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-18:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-19:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
-
   equipe-20:
-    - Nom, Prénom
-    - Nom, Prénom
-    - Nom, Prénom
