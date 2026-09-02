@@ -24,7 +24,7 @@
 #
 # Les étudiants n'écrivent aucune métadonnée. Ils rédigent, c'est tout.
 
-name: Contrôle des remises et production des PDF
+name: Contrôle et production des PDF
 
 on:
   pull_request:
