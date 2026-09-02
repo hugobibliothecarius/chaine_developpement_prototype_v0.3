@@ -63,7 +63,7 @@ bla-bla
 bla-bla
 
 - **Plateforme et interface :** Ovid
-- **Mode d'interrogation :** Advanced
+- **Mode d'interrogation :** Advanced + Basic
 - **Date d'exécution :** 2022-06-22
 
 **Historique de recherche**
