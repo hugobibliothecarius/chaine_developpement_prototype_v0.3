@@ -11,11 +11,9 @@ cliquables que dans la vue rendue.*
 
 ### Contenu de la stratégie
 
-- [ ] Le contexte de la demande, la question et sa pertinence clinique sont formulés
-- [ ] Le type de recherche visé est indiqué — il détermine l'exhaustivité attendue
-- [ ] Chaque concept est analysé séparément, avec sa portée retenue
-- [ ] Pour chaque concept : thésaurus et version, descripteurs, usage d'Explode justifié
-- [ ] Pour chaque concept : mots-clés, troncatures, champs interrogés, opérateurs de proximité
+- [ ] La question est formulée explicitement et sa pertinence clinique est justifiée
+- [ ] Chaque concept est analysé séparément : portée retenue, usage d'Explode justifié, choix du vocabulaire expliqué
+- [ ] Les descripteurs, mots-clés, troncatures et champs interrogés figurent dans l'historique de la section 3
 - [ ] Chaque base porte son nom exact, son segment et sa couverture, avec la date d'exécution
 - [ ] L'historique de recherche est numéroté ligne par ligne, avec le décompte de chaque ligne
 - [ ] Les blocs de concepts sont nommés entre crochets dans l'historique
@@ -26,8 +24,8 @@ cliquables que dans la vue rendue.*
 
 ### Saisie
 
-- [ ] L'historique de recherche est **dans un bloc de code** — sans quoi les symboles de troncature disparaissent du document final
-- [ ] Les termes des listes de concepts sont **entre accents graves**
+- [ ] Toute la syntaxe est **dans un bloc de code** — sans quoi les symboles de troncature disparaissent du document final
+- [ ] Aucun descripteur ni équation n'est recopié dans le texte courant
 - [ ] Les dates sont écrites avec des tirets, `2026-09-15`, jamais collées
 - [ ] Les grands décomptes sont séparés par une espace : `12 345 678`
 - [ ] Les PMID, s'il y en a, portent leur étiquette : `PMID : 30234752`
