@@ -1,146 +1,116 @@
-# Guide de l'enseignant
+# Corriger les remises
 
-Document interne. À déposer dans le dépôt ou à garder de côté, au choix.
+*Guide destiné à l'enseignante. Les consignes pour les équipes sont dans le
+[README](README.md).*
 
----
+Tout se fait dans le navigateur. Il n'y a rien à installer et rien à
+configurer. Vous n'avez aucune métadonnée à saisir : la page titre, le nom des
+fichiers et la licence sont produits automatiquement.
 
-## Le principe
-
-**`equipes.yml` est la source unique de vérité.** Vous le remplissez une fois en début de session : sigle du cours, établissement, licence, et la composition des équipes.
-
-Il alimente ensuite tout seul la page titre de chaque PDF, le nom de chaque fichier produit, et les avertissements de cohérence. Vos étudiants n'écrivent aucune métadonnée — c'est ce qui rend le dispositif tenable à vingt équipes. Une faute de frappe dans un sigle de cours se corrige à un seul endroit, pas dans vingt fichiers.
-
----
-
-## État de la configuration
-
-- [x] Ruleset actif, bypass réservée à `Repository admin`
-- [x] Contrôle `verification` marqué **Required**
-- [x] `Automatically delete head branches`
-- [x] `Interaction limits` → collaborateurs seulement
-- [x] `equipes.yml`, workflow, gabarit, README et grilles déposés
-- [x] Vingt dossiers d'équipe
-- [ ] **Noms réels des équipes dans `equipes.yml`**
-- [ ] Invitation des étudiants avec le rôle **Write**
-- [ ] Test complet depuis un second compte
-
-### Pourquoi la bypass list
-
-GitHub interdit d'approuver sa propre pull request, et vous êtes le seul code owner. Sans exception à votre nom, vous ne pouvez plus rien fusionner dans votre propre dépôt — pas même un renommage de fichier. Les étudiants ne sont pas administrateurs : la contrainte tient entièrement pour eux.
-
-### Le test depuis un second compte
-
-Non facultatif : votre rôle d'administrateur vous cache exactement ce que vous voulez vérifier, et sans second compte vous ne pouvez pas tester l'approbation.
-
-Créez un compte factice, invitez-le en Write, ouvrez une soumission depuis lui, puis approuvez depuis votre compte principal. Vérifiez au passage :
-
-- l'option de commit direct dans `main` est grisée
-- le formulaire de soumission se pré-remplit
-- un faux matricule (`20481593`) fait bien échouer le contrôle
-- le bouton de fusion reste inactif tant que vous n'avez pas approuvé
+> Les mots en *italique* sont les termes de GitHub. L'interface n'est pas
+> traduite en français, alors ils ne le sont pas ici non plus. Le lexique en
+> fin de page les explique. Les mots en **gras** sont des boutons à cliquer.
 
 ---
 
-## Corriger une remise
+## Votre tableau de bord
 
-### Lire et commenter
+Allez dans l'onglet **Pull requests**. Chaque équipe y dépose sa remise sous
+forme de *pull request*.
 
-Onglet **Files changed**. Survolez une ligne, cliquez sur le `+` bleu, écrivez.
-
-**Utilisez toujours `Start a review`, jamais `Add single comment`.** Le premier groupe vos remarques et ne les publie qu'à la fin ; le second envoie une notification à chaque commentaire. Sur vingt équipes, la différence est considérable — pour votre boîte de réception comme pour la leur.
-
-### Conclure
-
-Bouton **Submit review**, en haut à droite de l'onglet Files changed :
-
-| Choix | Quand | Effet |
-|---|---|---|
-| **Comment** | Remarques sans verdict | Ne débloque pas la fusion |
-| **Request changes** | Corrections à faire | Bloque la fusion jusqu'à nouvelle révision |
-| **Approve** | Travail accepté | Débloque la fusion |
-
-### Fusionner
-
-Une fois approuvée, la soumission se fusionne avec **Merge pull request**. La branche se supprime toute seule, et les PDF se génèrent dans la foulée.
-
-Fusionnez vous-même dans la foulée de l'approbation : le rôle Write permet techniquement à un étudiant de cliquer sur Merge une fois l'approbation donnée.
-
----
-
-## Récupérer les PDF
-
-Onglet **Actions** → dernière exécution de `document-final` sur `main` → section **Artifacts** → `documents-finaux`.
-
-```
-equipe-01_tremblay-nguyen-cote_strategie-de-recherche.pdf
-equipe-02_belanger-benali-o-connor_strategie-de-recherche.pdf
-```
-
-Le numéro vient du **nom du dossier**, jamais du texte de l'équipe : une erreur de numérotation dans leur document ne fausse pas la nomenclature. Les noms de famille viennent de `equipes.yml`. La date est celle du dernier enregistrement de l'équipe, lue dans l'historique Git.
-
-> **Les artefacts expirent après 90 jours**, plafond non contournable sur un dépôt public. Téléchargez le paquet en fin de session et archivez-le hors de GitHub : c'est votre pièce justificative en cas de contestation de note, et votre source pour un dépôt éventuel dans Papyrus.
-
-### Relancer une production sans rien modifier
-
-Onglet **Actions** → workflow `document-final` dans la colonne de gauche → bouton **Run workflow** → `main`.
-
-Utile après avoir corrigé `equipes.yml` : les PDF se refabriquent avec les bons noms, sans toucher aux travaux.
-
----
-
-## Suivre l'avancement
-
-L'onglet **Pull requests** est votre tableau de bord. Quelques filtres à mettre en signet :
+Voici trois filtres à coller dans la barre de recherche. Mettez-les en signet,
+vous allez les utiliser souvent.
 
 | Filtre | Ce qu'il montre |
 |---|---|
-| `is:pr is:open review:required` | Ce que vous n'avez pas encore regardé |
-| `is:pr is:open review:changes-requested` | En attente de correction par l'équipe |
-| `is:pr is:open review:approved` | Approuvées, prêtes à fusionner |
-| `is:pr is:open status:failure` | Contrôle automatique en échec |
+| `is:pr is:open review:required` | ce que vous n'avez pas encore regardé |
+| `is:pr is:open review:changes-requested` | les équipes qui doivent corriger |
+| `is:pr is:open review:approved` | ce que vous avez approuvé, prêt pour le *merge* |
 
-Le premier est votre file de correction.
+Le premier filtre, c'est votre file de correction.
 
 ---
 
-## Lire le journal d'exécution
+## Commenter
 
-Onglet **Actions** → une exécution → section **Annotations**.
+Ouvrez une *pull request*, puis allez dans l'onglet **Files changed**. Passez
+la souris sur une ligne, cliquez sur le `+` bleu et écrivez votre commentaire.
 
-| Message | Ce qu'il faut faire |
+**Utilisez `Start a review` et non `Add single comment`.** Avec `Start a
+review`, vos commentaires sont regroupés et publiés seulement à la fin. Avec
+`Add single comment`, chaque commentaire envoie un avis tout de suite. Sur
+vingt équipes, ça fait une grosse différence, autant pour votre boîte de
+réception que pour la leur.
+
+---
+
+## Conclure
+
+Cliquez sur **Submit review**, en haut à droite. Vous avez trois choix :
+
+- **Request changes** — il y a des corrections à faire. L'équipe modifie son
+  texte, vous relisez.
+- **Approve** — le travail est accepté.
+- **Comment** — vous laissez des remarques sans donner de verdict.
+
+Après avoir approuvé, cliquez sur **Merge pull request**. Le document final se
+fabrique tout seul, page titre comprise, et la *branch* de l'équipe disparaît.
+
+Faites le *merge* tout de suite après votre approbation, sans attendre.
+
+---
+
+## Récupérer les documents
+
+Allez dans l'onglet **Actions**, ouvrez la dernière exécution et descendez
+jusqu'à la section **Artifacts**. Téléchargez `documents-finaux` : vous y
+trouverez un PDF par équipe, déjà titré et nommé.
+
+> ⚠ Ces *artifacts* sont effacés après 90 jours. Téléchargez le paquet à la fin
+> de la session. C'est votre pièce justificative si une note est contestée.
+
+---
+
+## Si quelque chose bloque
+
+**Un ✗ rouge apparaît sous une *pull request*.** Le *check* automatique a
+trouvé un renseignement personnel : un matricule, un courriel ou un numéro de
+téléphone. L'équipe corrige son texte et le *check* repart tout seul. Vous
+n'avez rien à faire.
+
+**Un ⚠ jaune apparaît.** C'est un problème de configuration, pas un problème
+de l'équipe. Le *merge* n'est pas bloqué. Signalez-le et continuez.
+
+**GitHub affiche « You cannot approve your own pull request ».** C'est une
+règle de GitHub, pas un réglage. Faites le *merge* directement.
+
+**Une équipe ne retrouve plus son travail.** Elle est repartie du dossier
+`equipes/` au lieu de sa *pull request*. Rien n'est perdu : son texte est sur
+sa *branch* et il est visible dans l'onglet **Pull requests**.
+
+**Une équipe a modifié le dossier d'une autre équipe.** Ça se voit dans **Files
+changed** : plus d'un fichier apparaît. Demandez la correction avec **Request
+changes**. L'historique garde la trace de ce qui s'est passé.
+
+---
+
+## Lexique
+
+| Terme | Ce que ça veut dire |
 |---|---|
-| *Suite de 8 chiffres détectée* | **Erreur rouge, bloquante.** Matricule à retirer — ou date écrite `20260915` au lieu de `2026-09-15`. |
-| *Adresse courriel détectée* | Erreur rouge. Le dépôt est public. |
-| *les membres de equipe-XX sont encore « Nom, Prénom »* | Avertissement jaune. Remplissez `equipes.yml`, sinon le PDF sortira en `auteurs-non-indiques`. |
-| *equipe-XX est absente de equipes.yml* | Avertissement jaune. Le dossier existe, l'équipe n'est pas déclarée. |
-| *Déclarées dans equipes.yml sans dossier* | Avertissement jaune. Créez les dossiers manquants. |
-
-Les avertissements jaunes n'empêchent pas la fusion : une équipe absente de la liste est votre problème, pas celui des étudiants. Seules les erreurs rouges bloquent.
-
----
-
-## Problèmes courants
-
-**⚠ Jamais huit chiffres consécutifs, nulle part.** La détection lit le fichier brut, commentaires HTML compris. Une date `20260915`, un ISBN, un numéro de subvention, ou même un contre-exemple écrit dans une consigne — tout cela bloque la remise. Écrivez toujours les dates `2026-09-15`. *Ce piège s'est déclenché une fois pendant la mise en place : la consigne « jamais 20260915 » du gabarit contenait elle-même la forme interdite.*
-
-**Le PDF sort en `auteurs-non-indiques`.** L'équipe manque dans `equipes.yml`, ou ses membres y sont encore sous la forme `Nom, Prénom`. C'est votre fichier, pas le leur : corrigez-le puis relancez le workflow.
-
-**« J'ai ouvert deux soumissions par erreur. »** Fermez la seconde sans la fusionner (**Close pull request**). Le travail reste dans la première. La branche ne se supprime pas toute seule à la fermeture — seulement à la fusion.
-
-**« Je ne retrouve plus mon travail. »** L'étudiant est reparti du dossier `equipes/` au lieu de sa soumission. Rien n'est perdu : son texte est sur sa branche, visible depuis l'onglet Pull requests.
-
-**Une équipe a modifié le dossier d'une autre.** Visible dans Files changed : plus d'un fichier apparaît. Demandez la correction via **Request changes** — l'historique garde la trace.
-
-**Un fichier supprimé par accident.** Rien ne disparaît d'un dépôt Git. Ajoutez le chemin du fichier après `/commits/main/` dans l'URL du dépôt : l'historique reste consultable, et le contenu se récupère depuis le commit précédent.
-
-**Vous ne pouvez pas approuver votre propre soumission.** C'est une règle de GitHub, pas un réglage. Fusionnez directement — la bypass list vous le permet.
+| *repository* (dépôt) | l'ensemble des fichiers du cours, avec tout leur historique |
+| *commit* (enregistrement) | une modification enregistrée, datée et signée. Rien ne s'efface d'un *commit* |
+| *branch* (branche) | une ligne de travail en parallèle. Chaque équipe a la sienne |
+| `main` | la *branch* officielle, celle qui fait foi. Personne n'écrit dedans directement |
+| *pull request* (demande de fusion) | la demande d'intégrer la *branch* d'une équipe dans `main`. C'est sa remise : le travail, la discussion et votre correction sont tous là |
+| *review* (révision) | votre lecture commentée, ligne par ligne |
+| *merge* (fusion) | l'intégration du travail accepté dans `main`. Vous seule pouvez le faire |
+| *check* (contrôle) | une vérification automatique lancée à chaque *commit*. Celui-ci cherche les renseignements personnels |
+| *Actions* | le service de GitHub qui exécute les *checks* et fabrique les PDF |
+| *artifact* (artefact) | le paquet de fichiers produit par *Actions*. Téléchargeable pendant 90 jours |
+| *issue* (ticket) | une question posée par une équipe dans l'onglet **Issues** |
 
 ---
 
-## Maintenance annuelle
-
-**Les versions d'actions vieillissent.** GitHub déprécie régulièrement le moteur Node sous les actions ; le journal d'exécution vous préviendra par un avertissement jaune. Actuellement en `@v6`. Un avertissement aujourd'hui, une panne dans quelques mois.
-
-**D'une session à l'autre.** `Settings → General → Template repository`. Le bouton **Use this template** crée un dépôt neuf, sans historique partagé : une cohorte par instance, sans traîner les remises de l'an dernier.
-
-Créez aussi une *Release* étiquetée en fin de session (`v1.0-h27`) : elle fige l'état du dépôt et, contrairement aux artefacts, n'expire jamais.
+Pour tout le reste — la configuration, la liste des équipes, le journal
+d'exécution, l'entretien — voyez l'administrateur du *repository*.
