@@ -213,4 +213,4 @@ Pour la syntaxe Markdown : [guide de GitHub](https://docs.github.com/get-started
 
 ---
 
-<sub><strong>Avec assistance de l'IAg</strong> — étiquette des bibliothèques de l'UdeM. Les consignes, le gabarit et l'automatisation de ce dépôt ont été conçus avec l'aide de Claude Opus 5 (Anthropic), en août et septembre 2026. Les décisions, la vérification des faits et les tests relèvent de [nom, fonction]. Cette déclaration ne porte pas sur les travaux déposés ici.</sub>
+<sub><strong>Avec assistance de l'IAg</strong>. Les consignes, le gabarit et l'automatisation de ce dépôt ont été conçus avec l'aide de Claude Opus 5 (Anthropic), en août et septembre 2026. Les décisions, la vérification et les tests relèvent de Hugo Bernier, bibliothécaire - expérience numérique en recherche de l'Université de Montréal. Cette déclaration ne porte pas sur les travaux déposés ici.</sub>
