@@ -45,21 +45,19 @@ vous montre le rendu.
 Les blocs `<!-- ... -->` sont des consignes. Ils n'apparaissent ni sur GitHub
 ni dans le document final. Laissez-les, ils ne dérangent personne.
 
-**Toute syntaxe d'interrogation va dans un conteneur**, et il y en a deux.
+**Toute syntaxe d'interrogation va dans un bloc de code** — les trois accents
+graves ```` ``` ````, déjà en place dans la section 3 du gabarit. À
+l'intérieur, rien n'est interprété : vos troncatures, astérisques, dièses,
+crochets et barres obliques sortent exactement comme vous les avez écrits.
 
-L'historique de recherche va dans un **bloc de code** — les trois accents
-graves ```` ``` ````, déjà en place dans le gabarit. À l'intérieur, rien n'est
-interprété : vos troncatures, astérisques, dièses, crochets et barres
-obliques sortent exactement comme vous les avez écrits.
+**Ailleurs, n'écrivez aucune syntaxe.** Ne recopiez pas un descripteur ou une
+équation dans le texte courant : hors d'un bloc de code, les symboles de
+troncature d'Ovid et d'Embase disparaissent du document final, même s'ils
+s'affichent normalement sur GitHub. C'est exactement ce qui est évalué, alors
+ne le laissez pas au hasard.
 
-Dans les listes de l'analyse en concepts, les termes vont entre **accents
-graves simples**. Les champs concernés en contiennent déjà — remplacez le
-texte et gardez les accents.
-
-Sans ces conteneurs, les symboles de troncature d'Ovid et d'Embase
-disparaissent du document final, même s'ils s'affichent normalement sur
-GitHub. C'est exactement ce qui est évalué, alors ne le laissez pas au
-hasard.
+Les descripteurs et les équations vivent dans l'historique, et le reste du
+document y renvoie par le numéro de ligne.
 
 **N'écrivez aucun matricule, aucune adresse courriel, aucun numéro de
 téléphone.** Le *repository* est public et un *check* automatique va refuser le
