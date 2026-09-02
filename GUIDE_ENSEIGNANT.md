@@ -62,12 +62,16 @@ Faites le *merge* tout de suite après votre approbation, sans attendre.
 
 ## Récupérer les documents
 
-Allez dans l'onglet **Actions**, ouvrez la dernière exécution et descendez
-jusqu'à la section **Artifacts**. Téléchargez `documents-finaux` : vous y
-trouverez un PDF par équipe, déjà titré et nommé.
+Sur la page d'accueil du *repository*, dans la colonne de droite, cliquez sur
+**Releases** → **Documents finaux**. Vous y trouverez un PDF par équipe, déjà
+titré et nommé.
 
-> ⚠ Ces *artifacts* sont effacés après 90 jours. Téléchargez le paquet à la fin
-> de la session. C'est votre pièce justificative si une note est contestée.
+La liste se met à jour toute seule à chaque fois que vous fusionnez une remise.
+Vous n'avez rien à lancer, et rien à faire dans l'onglet **Actions**.
+
+> Ces fichiers n'expirent pas. Téléchargez quand même le paquet à la fin de la
+> session : c'est votre pièce justificative si une note est contestée, et une
+> copie hors GitHub vaut mieux qu'une seule.
 
 ---
 
@@ -106,8 +110,8 @@ changes**. L'historique garde la trace de ce qui s'est passé.
 | *review* (révision) | votre lecture commentée, ligne par ligne |
 | *merge* (fusion) | l'intégration du travail accepté dans `main`. Vous seule pouvez le faire |
 | *check* (contrôle) | une vérification automatique lancée à chaque *commit*. Celui-ci cherche les renseignements personnels |
-| *Actions* | le service de GitHub qui exécute les *checks* et fabrique les PDF |
-| *artifact* (artefact) | le paquet de fichiers produit par *Actions*. Téléchargeable pendant 90 jours |
+| *Actions* | le service de GitHub qui exécute les *checks* et fabrique les PDF. Vous n'avez pas à y aller |
+| *release* (version publiée) | l'endroit où les PDF sont publiés, dans la colonne de droite de la page d'accueil. N'expire pas |
 | *issue* (ticket) | une question posée par une équipe dans l'onglet **Issues** |
 
 ---
