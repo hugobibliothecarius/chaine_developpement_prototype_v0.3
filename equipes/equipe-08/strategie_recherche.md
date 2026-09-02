@@ -29,12 +29,16 @@
 
 ## 1. Question de recherche
 
-<!-- Formulez la question en une ou deux phrases, puis justifiez sa
-     pertinence clinique en un court paragraphe. -->
-
 **Question :**
+<!-- Une ou deux phrases. Une question, pas un sujet : « metformine et
+     insuffisance rénale » est un sujet ; « chez un patient diabétique
+     de type 2 avec un DFG sous 30, peut-on maintenir la metformine »
+     est une question. -->
 
 **Pertinence clinique :**
+<!-- Quelle décision cette recherche doit éclairer, et pour qui. Deux ou
+     trois phrases. Ce n'est pas un paragraphe sur l'importance générale
+     du sujet : c'est ce qui change selon la réponse trouvée. -->
 
 
 ## 2. Analyse en concepts
