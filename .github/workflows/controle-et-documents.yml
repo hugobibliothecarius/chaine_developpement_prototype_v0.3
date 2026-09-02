@@ -186,6 +186,7 @@ jobs:
           cours  = cfg.get('cours', '')
           etab   = cfg.get('etablissement', '')
           lic    = cfg.get('licence', 'CC BY 4.0')
+          licurl = cfg.get('licence_url', '')
           mode   = str(cfg.get('auteurs', 'equipe')).strip().lower()
 
           def slug(s):
@@ -203,10 +204,44 @@ jobs:
 
           pathlib.Path('meta').mkdir(exist_ok=True)
           pathlib.Path('paquet').mkdir(exist_ok=True)
+
+          # ⚠ « rights » dans les métadonnées ne sert à RIEN en sortie PDF :
+          # c'est une variable EPUB, le gabarit LaTeX l'ignore en silence.
+          # La mention de licence doit donc être injectée dans la page titre
+          # par --include-before-body. C'est le seul endroit où la licence est
+          # visible : la notice Papyrus n'a pas de champ prévu pour elle.
+          def tex(x):
+              for a, b in (('\\', r'\textbackslash{}'), ('&', r'\&'), ('%', r'\%'),
+                           ('$', r'\$'), ('#', r'\#'), ('_', r'\_'),
+                           ('{', r'\{'), ('}', r'\}'), ('~', r'\textasciitilde{}'),
+                           ('^', r'\textasciicircum{}')):
+                  x = x.replace(a, b)
+              return x
+
+          bloc = ['\\begin{center}\\footnotesize']
+          bloc.append('Diffusé sous licence ' + tex(str(lic)) + '\\\\')
+          if licurl:
+              bloc.append('\\url{' + str(licurl) + '}')
+          bloc.append('\\end{center}')
+          bloc.append('\\vspace{1.2em}')
+          pathlib.Path('licence.tex').write_text('\n'.join(bloc) + '\n', encoding='utf-8')
+          print(f'Mention de licence préparée : {lic}')
           lignes = []
 
+          # Une équipe qui n'a pas touché à son fichier n'a pas de document.
+          # Publier vingt PDF identiques au gabarit serait trompeur : on ne
+          # distinguerait plus un travail réel d'un formulaire vierge.
+          gabarit = '.github/gabarit/strategie_recherche.md'
+          vierge = open(gabarit, 'rb').read() if os.path.exists(gabarit) else None
+
+          ignorees = []
           for f in sorted(glob.glob('equipes/*/strategie_recherche.md')):
               equipe = os.path.basename(os.path.dirname(f))
+
+              if vierge is not None and open(f, 'rb').read() == vierge:
+                  ignorees.append(equipe)
+                  continue
+
               conf   = conf_de(roster.get(equipe))
               numero = equipe.split('-')[-1]
 
@@ -214,10 +249,9 @@ jobs:
               # Indispensable pour Papyrus : chaque notice a besoin d'un titre distinct.
               titre_equipe = str(conf.get('titre') or titre)
 
-              # Les noms ne sont lus que si le mode les autorise. Une équipe sans
-              # « membres » signe « Équipe NN » : c'est le cas normal, pas une
-              # erreur. Les noms s'ajoutent équipe par équipe, au moment du
-              # dépôt dans Papyrus, à la demande de l'équipe concernée.
+              # Ces documents sont publiés et cités : ils se signent. Une équipe
+              # sans « membres » retombe sur « Équipe NN », mais c'est un défaut
+              # de configuration, pas un état normal — le workflow le signale.
               membres = []
               if mode == 'membres':
                   membres = [str(m) for m in (conf.get('membres') or [])
@@ -229,6 +263,10 @@ jobs:
               else:
                   auteurs = [f'Équipe {numero}']
                   segment = ''
+                  if mode == 'membres':
+                      print(f"::warning file={f}::{equipe} n'a pas de membres dans equipes.yml — "
+                            f"son PDF signera « Équipe {numero} », ce qui n'est pas une attribution "
+                            f"valable sous licence CC BY.")
 
               # Date du dernier enregistrement de ce fichier précis
               date = subprocess.run(
@@ -243,7 +281,6 @@ jobs:
                   'author': auteurs,
                   'date': date,
                   'lang': 'fr',
-                  'rights': lic,
                   'colorlinks': True,
               }
               mf = f'meta/{equipe}.yml'
@@ -254,13 +291,23 @@ jobs:
               lignes.append(f'{f}\t{mf}\t{sortie}')
 
           pathlib.Path('manifeste.tsv').write_text('\n'.join(lignes) + '\n', encoding='utf-8')
+
+          if ignorees:
+              print(f"::notice::{len(ignorees)} équipe(s) sans travail, ignorée(s) : {', '.join(ignorees)}")
           print(f'{len(lignes)} document(s) à produire.')
+          if not lignes:
+              print("::notice::Aucune équipe n'a encore commencé. Rien à produire — ce n'est pas une erreur.")
           PY
 
       - name: Construire les PDF
         run: |
           set -uo pipefail
           echec=0
+          if [ -z "$(tr -d '[:space:]' < manifeste.tsv)" ]; then
+            echo "Aucun document à produire."
+            exit 0
+          fi
+
           while IFS=$'\t' read -r source meta sortie; do
             [ -z "$source" ] && continue
             # markdown-tex_math_dollars : sans cela, la troncature Ovid
@@ -271,6 +318,7 @@ jobs:
             if pandoc "$source" \
                  --from=markdown-tex_math_dollars \
                  --metadata-file="$meta" \
+                 --include-before-body=licence.tex \
                  --pdf-engine=xelatex \
                  --standalone \
                  -V geometry:margin=2.5cm \
@@ -297,7 +345,7 @@ jobs:
           name: documents-finaux
           path: paquet/
           retention-days: 90
-          if-no-files-found: error
+          if-no-files-found: warn
 
       # ─────────────────────────────────────────────────────────────────
       # Livraison : une release roulante, « documents-finaux »
@@ -322,8 +370,8 @@ jobs:
 
           pdfs=(paquet/*.pdf)
           if [ ${#pdfs[@]} -eq 0 ]; then
-            echo "::error::Aucun PDF à publier."
-            exit 1
+            echo "::notice::Aucun document à publier — aucune équipe n'a encore commencé. La release existante reste intacte."
+            exit 0
           fi
 
           # Les notes passent par un fichier : une ligne non indentée dans un
@@ -331,7 +379,7 @@ jobs:
           printf '%s\n' \
             'Documents finaux, produits automatiquement à la fusion de chaque remise.' \
             '' \
-            'Un PDF par équipe, page titre comprise.' \
+            'Un PDF par équipe ayant commencé son travail. Une équipe qui n'"'"'a pas touché à son fichier n'"'"'apparaît pas ici.' \
             '' \
             "Dernière mise à jour : $(date -u '+%Y-%m-%d à %H:%M UTC')" \
             "Documents : ${#pdfs[@]}" \
