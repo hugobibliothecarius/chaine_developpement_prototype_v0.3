@@ -161,6 +161,11 @@ endroit et vos coéquipiers suivent la discussion.
 3. N'utilisez jamais le bouton **Merge pull request**. C'est le rôle de
    l'enseignante.
 4. Aucun renseignement personnel dans le document.
+5. Pour votre propre usage de l'IA générative : l'autorisation de l'enseignante
+   est requise, et vous devez déclarer votre utilisation. Le plan de cours prime
+   sur tout ce qui est écrit ici. La [boîte à outils des
+   bibliothèques](https://boite-outils.bib.umontreal.ca/trouver-evaluer/iag?p=5377614)
+   explique comment citer, signaler et déclarer.
 
 ---
 
@@ -180,31 +185,6 @@ sous la même licence.
 Le fichier `LICENSE` contient le texte officiel, en anglais. Le résumé destiné
 aux non-juristes se trouve sur le site de Creative Commons, en français :
 <https://creativecommons.org/licenses/by/4.0/deed.fr>
-
----
-
-## Utilisation de l'intelligence artificielle générative
-
-> ### Avec assistance de l'IAg
->
-> Étiquette de signalement des bibliothèques de l'Université de Montréal.
-
-L'outillage de ce dépôt — les consignes, le gabarit, le contrôle automatique
-des renseignements personnels et la chaîne de fabrication des PDF — a été
-conçu avec l'aide de Claude Opus 5 (Anthropic),
-entre le 26 août et le 2 septembre 2026. Les décisions de conception, la
-vérification des faits et les tests relèvent de [nom, fonction]. L'assistant a
-produit en cours de route des affirmations factuelles erronées : chaque énoncé
-retenu a été revérifié à la source.
-
-**Cette déclaration ne porte pas sur les travaux déposés ici.** Les stratégies
-de recherche sont la production des équipes qui les signent.
-
-Pour votre propre travail, deux règles s'appliquent à l'Université de
-Montréal : avoir l'autorisation de l'enseignante, et communiquer votre
-utilisation de l'IAg. Le plan de cours prime sur tout ce qui est écrit ici. La
-[boîte à outils des bibliothèques](https://boite-outils.bib.umontreal.ca/trouver-evaluer/iag?p=5377614)
-explique comment citer, signaler et déclarer.
 
 ---
 
@@ -230,3 +210,7 @@ Ouvrez une *issue* dans l'onglet **Issues** plutôt que d'écrire un courriel :
 la réponse va servir aux autres équipes.
 
 Pour la syntaxe Markdown : [guide de GitHub](https://docs.github.com/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+
+---
+
+<sub><strong>Avec assistance de l'IAg</strong> — étiquette des bibliothèques de l'UdeM. Les consignes, le gabarit et l'automatisation de ce dépôt ont été conçus avec l'aide de Claude Opus 5 (Anthropic), en août et septembre 2026. Les décisions, la vérification des faits et les tests relèvent de [nom, fonction]. Cette déclaration ne porte pas sur les travaux déposés ici.</sub>
