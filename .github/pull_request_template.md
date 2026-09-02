@@ -6,7 +6,8 @@
 
 ## Avant de soumettre
 
-*Cochez les cases **après** avoir créé la soumission pour correction (ouverture de la pull request) : elles deviennent cliquables dans la vue rendue.*
+*Cochez les cases **après** avoir créé la pull request : elles ne deviennent
+cliquables que dans la vue rendue.*
 
 ### Contenu de la stratégie
 
@@ -21,21 +22,27 @@
 - [ ] La date d'exécution et le nombre de résultats sont inscrits pour chaque base
 - [ ] Les filtres appliqués sont documentés — ou leur absence est justifiée
 - [ ] Les références retenues sont listées
-- [ ] La page de titre porte la mention de licence CC BY 4.0
+
+### Saisie
+
+- [ ] Descripteurs, mots-clés et troncatures sont **entre accents graves** — sans eux, les symboles de troncature disparaissent du document final
+- [ ] Les dates sont écrites avec des tirets, `2026-09-15`, jamais collées
+- [ ] Les PMID, s'il y en a, portent leur étiquette : `PMID : 30234752`
 
 ### Dépôt
 
 - [ ] Le fichier modifié se trouve dans le dossier de notre équipe
 - [ ] Aucun fichier appartenant à une autre équipe n'a été touché
 - [ ] Aucun matricule, courriel ni numéro de téléphone dans le document
-- [ ] Les trois membres sont identifiés ci-dessus
+- [ ] Tous les membres de l'équipe sont identifiés ci-dessus
 
 ## Ce qui a changé depuis la dernière version
 
 <!-- Deux ou trois phrases. Si le travail dérive d'une stratégie déjà
-     déposée, indiquez son permalien dans la section Filiation. -->
+     versée dans le repository, indiquez son permalien dans la section
+     Filiation. -->
 
 ## Questions ou difficultés
 
 <!-- Signalez ici ce sur quoi vous hésitez, ou ce dont vous aimeriez discuter.
-     C'est le bon endroit pour poser une question à l'enseignant. -->
+     C'est le bon endroit pour poser une question à l'enseignante. -->
