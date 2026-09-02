@@ -45,12 +45,21 @@ vous montre le rendu.
 Les blocs `<!-- ... -->` sont des consignes. Ils n'apparaissent ni sur GitHub
 ni dans le document final. Laissez-les, ils ne dérangent personne.
 
-**Écrivez toute syntaxe d'interrogation entre accents graves** : les
-descripteurs, les mots-clés et les troncatures. Les champs concernés en
-contiennent déjà — remplacez le texte et gardez les accents. Sans eux, les
-symboles de troncature d'Ovid et d'Embase disparaissent du document final,
-même s'ils s'affichent normalement sur GitHub. C'est exactement ce qui est
-évalué, alors ne le laissez pas au hasard.
+**Toute syntaxe d'interrogation va dans un conteneur**, et il y en a deux.
+
+L'historique de recherche va dans un **bloc de code** — les trois accents
+graves ```` ``` ````, déjà en place dans le gabarit. À l'intérieur, rien n'est
+interprété : vos troncatures, astérisques, dièses, crochets et barres
+obliques sortent exactement comme vous les avez écrits.
+
+Dans les listes de l'analyse en concepts, les termes vont entre **accents
+graves simples**. Les champs concernés en contiennent déjà — remplacez le
+texte et gardez les accents.
+
+Sans ces conteneurs, les symboles de troncature d'Ovid et d'Embase
+disparaissent du document final, même s'ils s'affichent normalement sur
+GitHub. C'est exactement ce qui est évalué, alors ne le laissez pas au
+hasard.
 
 **N'écrivez aucun matricule, aucune adresse courriel, aucun numéro de
 téléphone.** Le *repository* est public et un *check* automatique va refuser le
@@ -65,6 +74,11 @@ Il y a une exception pour vos références : un **PMID compte huit chiffres lui
 aussi**. Il passe s'il porte son étiquette, comme dans `PMID : 30234752`, et il
 est refusé s'il est tout seul. Les DOI et les liens PubMed complets passent
 sans problème.
+
+**Séparez les grands décomptes par une espace.** Une ligne de recherche qui
+ramène plus de dix millions de références donnerait huit chiffres collés, et
+le contrôle la refuserait. Écrivez `12 345 678` — c'est aussi la typographie
+correcte en français.
 
 ### 4. Enregistrer
 
