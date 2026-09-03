@@ -40,9 +40,9 @@ Considérez que ce qui est enregistré ici y reste.
 
 ### 2. Droit de refus
 
-L'utilisation de cette plateforme sur une base volontaire, personne ne peut vous contraindre à l'utiliser.
+L'utilisation de cette plateforme sur une base volontaire, vous avez le droit de refuser.
 
-Vous avez le droit de refuser de l'utiliser. Dans le cas échéant, **avant de faire quoi que ce soit, avisez votre l'enseignant**. Une voie de
+**Avant de faire quoi que ce soit, avisez votre enseignant**. Une voie de
 soumission non publique vous sera toujours offerte, vous serez évalués sur le même travail, sans que
 votre nom ait à être publié. Vous n'avez pas à vous justifier, et ce choix n'a aucune
 incidence sur votre note.
