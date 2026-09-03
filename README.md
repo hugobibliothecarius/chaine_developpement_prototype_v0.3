@@ -3,7 +3,7 @@
 ## Description
 
 Ce répertoire a été conçu pour répondre aux besoins des étudiants et de l'enseignant dans le cadre d'un cours portant sur les stratégies de recherche. 
-Ce répertoire, entre autres permet:
+Ce répertoire, permet:
 - Aux étudiants et à l’enseignant de se doter d’un espace de travail pour faire progresser leurs travaux (édition et correction);
 - À l'enseignant de corriger les travaux et de rendre disponibles les recommandations;
 - La contribution des futures équipes issus des prochaines cohortes étudiantes du cours.
