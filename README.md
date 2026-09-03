@@ -60,9 +60,9 @@ contribution afin.
 ### Droit d'auteur
 
 Vos noms figureront sur la page titre du document final, sous licence
-**Creative Commons Attribution 4.0**. 
+**Creative Commons Attribution 4.0 (CC BY 4.0)**. 
 
-La licence CC BY permet à quiconque de reprendre et d'adapter
+La licence **CC BY** permet à quiconque de reprendre et d'adapter
 votre travail, y compris à des fins commerciales, **à condition de vous
 créditer**. C'est aussi pour ça que vos noms y sont : sans eux, personne ne
 saurait qui créditer.
