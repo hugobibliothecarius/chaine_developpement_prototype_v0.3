@@ -2,11 +2,12 @@
 
 ## Description
 
-Ce *repository* (répertoire) a été conçu pour répondre aux besoins des étudiants et leur enseignant dans le cadre d'un cours portant les stratégies de recherche. 
+Ce répertoire a été conçu pour répondre aux besoins des étudiants et de l'enseignant dans le cadre d'un cours portant les stratégies de recherche. 
 Ce répertoire, entre autres permet:
 - Aux étudiants et à l’enseignant de se doter d’un espace de travail pour faire progresser leurs travaux (édition et correction);
 - À l'enseignant de corriger les travaux et de rendre disponibles les recommandations;
 - La contribution des futures équipes issus des prochaines cohortes étudiantes du cours.
+
 ---
 
 ## Fonctionnement
@@ -15,37 +16,47 @@ Tout se fait à partir du navigateur web. Il n'y a rien à installer et aucune l
 commande à entrer
 
 **Vous n'avez aucune information administrative à saisir.** Vos noms, le sigle
-du cours, la date et la licence sont ajoutés automatiquement à la page titre du
-document final. Tout ce que vous rédigez c'est votre stratégie de recherche.
+du cours, la date et la licence sont ajoutés automatiquement. Tout ce que vous rédigez c'est votre stratégie de recherche.
 
-> Les mots en **gras** sont des boutons à cliquer. Les mots en *italique* sont les termes de GitHub. L'interface de GitHub n'est pas
-> traduite en français, ainsi, afin d'être clair, ce fichier README.MD utilise généralement les termes originaux en anglais. Un lexique, en
-> fin de page, vous est fournis pour vous orienter. 
+> Les mots en **gras** sont des boutons à cliquer. Les mots en *italique* sont des termes de GitHub. L'interface de GitHub n'est pas
+> traduite en français, ainsi, pour être cohérent et dans un soucis de clarté, ce document utilise généralement les termes originaux en anglais. Bien que ce document est conçu de façon à ce que vous n'aviez pas à vous en référer, un lexique, en
+> fin de page, vous est fournis pour lier les termes de GitHub aux concepts qu'il désignent. 
+
 ---
 
 ## IMPORTANT: À lire **avant** de commencer
 
-### Protection des renseignements personnels
+### Concernant vos renseignements personnels
 
-Ce répertoire est accessible au public: Si vous décidez de mettre votre travail ici, il sera publié **sous votre nom**: n'importe
-qui peut le consulter et voir votre nom.
+Ce répertoire est accessible au public: Si vous décidez de mettre votre travail ici, il sera publié **sous votre nom**: n'importe qui peut le consulter et voir votre nom.
 
-Un *repository* Git conserve tout, en permanance. Une fois vos noms enregistrés, **ils y
-restent**, même si :
+Un *repository* Git conserve tout. Une fois vos noms enregistrés, **ils
+continueront d'apparaître**, même si :
 - la ligne est retirée du fichier plus tard ;
 - votre équipe décide finalement de ne pas déposer dans Papyrus ;
 - vous quittez le cours.
 
-Il n'y a pas de possibilité d'effacer un enregistrement contenant votre nom qui serait déjà soumis/publié.
+Considérez que ce qui est enregistré ici y reste.
 
-#### Droit de refus
+#### Droit de refus: L'utilisation de cette plateform n'est pas obligatoire, elle est **optionnelle**
 
-**Parlez-en à l'enseignant avant de commencer à travailler.** Une voie de
-remise non publique existe : vous serez évalués sur le même travail, sans que
-votre nom soit publié. Vous n'avez pas à vous justifier, et ce choix n'a aucune
+L'utilisation de cette plateforme sur une base volontaire, personne ne peut vous contraindre à l'utiliser.
+
+Vous avez le droit de refuser de l'utiliser. Dans le cas échéant, **avant de faire quoi que ce soit, avisez votre l'enseignant. ** Une voie de
+soumission non publique vous sera toujours offerte, vous serez évalués sur le même travail, sans que
+votre nom ait à être publié. Vous n'avez pas à vous justifier, et ce choix n'a aucune
 incidence sur votre note.
 
-Cette décision doit être prise **avant** de débuter vos travaux. Une fois vos noms inscrits, ils demeureront.
+### Optionnelle : Masquer votre adresse courriel
+
+Cliquez sur votre photo en haut à
+droite → **Settings** → **Emails**, puis cochez **Keep my email addresses
+private**.
+
+Sans ce réglage, votre adresse courriel apparaît publiquement dans
+l'historique du *repository* — et comme pour vos noms, il n'est pas possible de
+corriger un *commit* déjà fait. Faites-le **avant** votre première
+contribution afin.
 
 ### Droit d'auteur
 
@@ -62,197 +73,127 @@ Lorsque vos travaux seront rédigés, corrigés et approuvés, les travaux pourr
 Montréal, où ils recevront une adresse permanente et d'où ils pourront être cités.
 
 ---
-
-## À faire avant avant de commencer
-
-### Rendre votre adresse courriel privée.
-
-Cliquez sur votre photo en haut à
-droite → **Settings** → **Emails**, puis cochez **Keep my email addresses
-private**.
-
-Sans ce réglage, votre adresse courriel apparaît publiquement dans
-l'historique du *repository* — et comme pour vos noms, on ne peut plus
-corriger un *commit* déjà fait. Faites-le **avant** votre première
-contribution : c'est le seul moment où c'est possible.
-
----
 ## Mode d'emploi
 
-### Remettre un travail
+### 1. Accèder à votre fichier de travail
 
-#### 1. Ouvrir le fichier de votre équipe
+Ouvrir le fichier de votre équipe
 
-`equipes/` → votre dossier → `strategie_recherche.md`
+`equipes/` → votre dossier → fichier `strategie_recherche.md`
 
-C'est le seul fichier que vous modifiez. Ne touchez pas au dossier d'une autre
-équipe : la modification apparaîtrait dans l'historique et votre remise serait
-refusée.
+C'est le seul fichier que vous aurez à modifier.
 
-#### 2. Cliquer sur le crayon
+Le rôle qu'on vous donne ouvre techniquement tout le dépôt : rien ne vous
+empêche d'ouvrir le fichier d'une autre équipe. Vérifiez le chemin affiché en
+haut de l'éditeur — il doit porter le numéro de votre équipe.
+
+Si l'erreur arrive, rien n'est perdu : Git conserve toutes les versions. Elle
+se verra dans votre soumission, où plus d'un fichier apparaîtrait, et
+l'enseignant vous demandera de la corriger avant d'accepter le travail.
+
+### 2. Rédaction
 
 L'icône ✏️ en haut à droite du fichier ouvre l'éditeur. L'onglet **Preview**
 vous montre le rendu.
 
-#### 3. Rédiger
+Écrivez dans les champs prévus. **Les consignes** sont
+encadrées par `<!--` et `-->` : 
+- En haut, les deux règles de saisie;
+- Les autres expliquent chaque section.
 
-Les blocs `<!-- ... -->` sont des consignes. Ils n'apparaissent ni sur GitHub
-ni dans le document final.
+**Laissez-les où elles sont et écrivez en dessous.** Les effacer rendra inutilement la tâche plus complexe à l'enseignant qui aura à gérer plusieurs de multiples lignes qui apparaitront superficiellement au moment de la correction.
 
-**Laissez-les en place, écrivez en dessous.** Ils ne dérangent personne —
-personne ne les voit. Mais les effacer alourdit beaucoup la relecture de
-l'enseignant : il verrait quarante lignes de consigne supprimées pour
-quinze lignes de votre travail, et devrait chercher les vôtres là-dedans.
+Les consignes ne sont que visible dans l'éditeur. Elles n'apparaitront pas dans le document final. Si vous souhaitez vous en assurer, vous n'avez qu'à cliquer sur **Preview** afin d'avoir le rendu réel de votre document de travail.
 
-**Toute syntaxe d'interrogation va dans un bloc de code** — les trois accents
-graves ```` ``` ````, déjà en place dans la section 3 du gabarit. À
-l'intérieur, rien n'est interprété : vos troncatures, astérisques, dièses,
-crochets et barres obliques sortent exactement comme vous les avez écrits.
+### 3. Soumettre pour correction
 
-**Ailleurs, n'écrivez aucune syntaxe.** Ne recopiez pas un descripteur ou une
-équation dans le texte courant : hors d'un bloc de code, les symboles de
-troncature d'Ovid et d'Embase disparaissent du document final, même s'ils
-s'affichent normalement sur GitHub. C'est exactement ce qui est évalué, alors
-ne le laissez pas au hasard.
+- Cliquez sur **Commit changes…** en haut à droite. 
 
-**Et ne faites pas passer votre historique par un traitement de texte.**
-Collez-le directement de la base de données vers le bloc de code. Word et
-Google Docs remplacent automatiquement les guillemets droits par des
-guillemets courbes : votre ligne
-
+- Effacez ce que GitHub propose : « Update strategie_recherche.md », **cette entrée doit devenir le titre de votre soumission**  afin que l'enseignant repère facilement votre soumission au moment de faire la correction. Nommez selon la convention suivante:
 ```
-limit 7 to yr="2000 -Current"
+Équipe [votre numéro d'équipe] — [votre question/sujet]
+
+Exemple: Équipe 03 - Simulation en chirurgie cardio thoracique
 ```
 
-deviendrait `yr=“2000 -Current”`, et la requête ne fonctionnerait plus. Le
-changement est invisible à l'œil, personne ne vous en avertira, et c'est votre
-équation qui serait fautive. Les sections en prose, elles, vous pouvez les
-brouillonner où vous voulez.
+Pour le reste, ne changez rien. Tout est déjà présélectionné pour vous. GitHub ne vous laissera pas écrire directement
+dans `main` — l'option est grisée, ou absente selon la version.
 
-Les descripteurs et les équations vivent dans l'historique, et le reste du
-document y renvoie par le numéro de ligne.
+GitHub vous présente ensuite le formulaire de soumission qui partiellement remplie.
+- Ajoutez l'identification de votre équipe — le numéro, le travail, et vos
+**identifiants GitHub**, pas vos noms.
+- Lorsque vous avez terminé, cliquez sur **Create pull request**.
 
-**N'écrivez aucun matricule, aucune adresse courriel, aucun numéro de
-téléphone.** Le *repository* est public et un *check* automatique va refuser le
-travail.
+Un formulaire apparaît, déjà rempli en partie: 
+- Complétez l'identification de votre équipe — le numéro d'équipe, le travail, et vos **identifiants GitHub**,
+pas vos noms. 
+- Pour compléter, cliquez sur **Create pull request**.
 
-**N'écrivez jamais huit chiffres de suite**, où que ce soit : le *check* y voit
-un matricule. Écrivez les dates avec des tirets, `2026-09-15`, jamais collées.
-Ça vaut aussi pour l'intérieur des blocs de consigne, parce que le *check* lit
-le fichier au complet, y compris ce qui ne s'affiche pas à l'écran.
+C'est fait, votre travail est soumis. Ce clic crée la soumission et vous dépose directement sur sa page, où la grille s'affiche afin de vous permettre de confirmer que vous avez respectés les critères de soumission:
+- Cochez maintenant les cases qui sont devenus cliquables. 
 
-Il y a une exception pour vos références : un **PMID compte huit chiffres lui
-aussi**. Il passe s'il porte son étiquette, comme dans `PMID : 30234752`, et il
-est refusé s'il est tout seul. Les DOI et les liens PubMed complets passent
-sans problème.
+Il n'y a rien à enregistrer : chaque case se sauvegarde d'elle-même lorsque vous les cliqués.
 
-**Séparez les grands décomptes par une espace.** Une ligne de recherche qui
-ramène plus de dix millions de références donnerait huit chiffres collés, et
-le contrôle la refuserait. Écrivez `12 345 678` — c'est aussi la typographie
-correcte en français.
+### 4. Validation automatisé de la soumission
 
-#### 4. Enregistrer
+Quelques secondes plus tard, au bas de la page :
 
-Cliquez sur **Commit changes…** en haut à droite. Dans la fenêtre :
+✓ vert — tout va bien.
+Skipped à côté de « Production des PDF » — normal, le document final ne se fabrique qu'une fois le travail accepté.
+✗ rouge — un renseignement personnel a été détecté. Details montre la ligne en cause ; corrigez-la et le contrôle repart tout seul.
 
-**Le message de *commit* devient le titre de votre remise.** Commencez-le par
-votre numéro d'équipe :
+Puisque le dépôt est public, la validation automatisé va chercher à trouver au sein de votre soumission des éléments qui pourraient compromettre la protection de vos renseignements personnels (outre que votre nom) et à les refuser, tel:
+- numéro de matricule
+- adresse courriel
+- numéro de téléphone. Trois choses le déclenchent sans qu'on l'ait voulu.
 
-```
-Équipe 03 — concepts et équations
-```
+Pour cette raison, vous devez éviter les séquences numériques à 8 chiffres concurrents, sans espace ou tiret (ex.: « 12345678 »)
 
-C'est par ce titre que l'enseignant vous retrouve dans sa liste. Effacez le
-texte que GitHub propose — « Update strategie_recherche.md » ne dit pas qui
-vous êtes, et sa file de correction en compterait vingt identiques.
+Pour un PMID; il passe s'il porte le préfixe « PMID : » (ex.: « PMID : 30234752 »). Les DOI et les liens PubMed complets ne poseront pas problème.
 
-Pour le reste, ne changez rien : GitHub ne vous laisse pas écrire directement
-dans `main` — l'option est grisée, ou absente selon la version de l'interface —
-et la création d'une branche est déjà choisie. **Laissez le nom proposé tel
-quel.**
+Un grand décompte de résultats. Au-delà de dix millions, huit chiffres collés. Écrivez 12 345 678 avec des espaces — c'est aussi la typographie correcte en français.
 
-Validez. Le bouton s'appelle **Commit changes** ou **Propose changes** selon la
-version ; les deux font la même chose.
+Pour nombres élevés, l'utilisation de la typographie correcte en français pour les formater - séparé par  des espaces, va vous éviter tout blocage (ex:  « 12 345 678 »)
 
-#### 5. Ouvrir la pull request
+### 5. Continuer de travailler
 
-Un formulaire apparaît, déjà rempli en partie. Complétez l'identification de
-votre équipe — le numéro d'équipe, le travail, et vos **identifiants GitHub**,
-pas vos noms. Puis cliquez sur **Create pull request**.
+Vous pouvez toujours continuer de modifier votre travail jusqu'à la date de soumission limite - fixée par enseignant. Pour ce faire, vous devez absolument utiliser le *pull request* de votre soumission - ne jamais utiliser le fichier dans votre dossier equipes/. 
 
-> **Pourquoi des identifiants ici, et vos noms sur le document.** Les
-> identifiants servent à vous mentionner dans la discussion. Vos noms, eux,
-> sont déjà inscrits par l'administrateur du dépôt et figurent sur la page
-> titre du document final, sous licence CC BY — c'est votre travail, il est
-> publié, cité et déposé dans Papyrus sous votre signature. Une attribution
-> anonyme n'aurait aucune valeur sous cette licence.
+Conseil d'usage:
+1. Onglet *Pull requests* → ouvrez la vôtre. Mettez-la en signet, vous pourriez y revenir souvent.
+2. Onglet *Files changed*:
+	- Cliquez sur les trois points ⋯ à droite du nom du fichier → Edit file
+	- Modifiez votre texte, puis *Commit changes*. Cette fois, laissez l'option de commit direct sélectionnée.
+ 
+Vos modifications s'ajoutent au même *pull request* que lorsque vous aviez fait originalement votre soumission. N'en ouvrez  surtout pas une deuxième.
 
-**C'est votre remise.** Cochez ensuite les cases de la grille : elles ne
-deviennent cliquables qu'une fois la *pull request* créée.
+> Pourquoi ne pas passer par votre? Le dossier equipes/ affiche la version officielle de votre travail, celle qui a déjà été > acceptée : elle vit sur la branch main. Votre ébauche en cours, elle, vit sur votre propre branch, et vous y accédez par 
+> votre pull request. En passant par celle-ci, vous êtes sûrs de modifier le bon fichier.
 
-#### 6. Vérifier le check automatique
+### 6. Après la soumission
 
-Regardez au bas de la page, quelques secondes plus tard :
+L'enseignant corrige le travail que vous avez soumis à l'aide du *Pull requests* dans l'onglet **Files changed** et sera en mesure d'y ajouter des commentaire. C'est ce que GitHub appelle une review. Cela aboutit à trois scénarios pour les étudiants:
 
-- **✓ vert** — tout va bien.
-- **✗ rouge** — un renseignement personnel a été détecté. Cliquez sur
-  **Details** pour voir la ligne en cause, corrigez-la comme à l'étape
-  suivante, et le *check* repartira tout seul.
+1. **Le travail est approuvé.** Il peut alors fusionner votre soumission : votre
+travail rejoint le dossier de votre équipe sur `main`, et le document final se
+produit automatiquement, avec sa page titre à vos noms.
 
-Un troisième état, **Skipped**, apparaît à côté de « Production des PDF ».
-C'est normal : le document final se fabrique seulement quand votre travail est
-accepté.
+2. **Des corrections sont demandées.** La fusion reste bloquée tant que vous n'avez
+pas repris votre texte. Deux façons de le faire, selon la forme du commentaire.
 
----
+- **Une ou plusieurs suggestions sont formulées** — un encadré vous montre la ligne corrigée. Un
+  bouton sous l'encadré l'applique : vous n'avez rien à éditer.
+- **Aucune suggestion** — modifiez le fichier vous-même, comme à la section
+  précédente. L'éditeur n'affiche pas les commentaires : gardez votre soumission
+  ouverte dans un onglet pour lire les annotations, et l'éditeur dans un second.
 
-### Continuer à travailler
+3. **Des commentaires simples - sans demande de corrections** Ils commente sans approuver ni bloquer : à vous
+de voir ce que vous en faites. Votre soumission restera en attente jusqu'à ce que l'enseignant l'approuve.
 
-Votre travail n'est pas figé. Vous pouvez le modifier jusqu'à la date de
-remise, mais vous devez revenir **par votre pull request**, pas par le dossier
-`equipes/`.
-
-1. Onglet **Pull requests** → ouvrez la vôtre. *Mettez-la en signet, vous allez
-   y revenir souvent.*
-2. Onglet **Files changed**
-3. Cliquez sur les trois points `⋯` à droite du nom du fichier → **Edit file**
-4. Modifiez votre texte, puis **Commit changes**. Cette fois, laissez l'option
-   de *commit* direct sélectionnée.
-
-Vos modifications s'ajoutent à la même *pull request*. N'en ouvrez pas une
-deuxième.
-
-> **Pourquoi ce détour ?** Le dossier `equipes/` affiche la version officielle
-> de votre travail, celle qui a déjà été acceptée : elle vit sur la *branch*
-> `main`. Votre brouillon en cours, lui, vit sur votre propre *branch*, et vous
-> y accédez par votre *pull request*. En passant par elle, vous êtes sûrs de
-> modifier le bon fichier.
-
----
-
-### Après la soumission
-
-L'enseignant lit votre travail dans **Files changed** et commente ligne par
-ligne. C'est ce que GitHub appelle une *review*.
-
-- **Il demande des corrections** → modifiez votre fichier comme ci-dessus.
-  Ses commentaires restent attachés à la discussion.
-
-Deux façons de corriger, selon la réponse.
-
-**Si sa remarque contient une suggestion** — un encadré qui montre la ligne
-corrigée — vous n'avez rien à éditer. Un bouton sous l'encadré applique sa
-correction directement. C'est le cas le plus fréquent pour une faute de
-syntaxe.
-
-**Sinon**, il faut modifier le fichier. Un détail pratique : l'éditeur
-n'affiche pas les commentaires. Ouvrez donc votre remise dans un onglet, pour
-lire les annotations dans **Files changed**, et l'éditeur dans un second.
-- **Il accepte le travail** → il fait le *merge* de votre *pull request*.
-  Votre travail rejoint le dossier de l'équipe sur `main`, et le document final
-  se produit automatiquement, page titre comprise.
-
-Répondez dans la *pull request* plutôt que par courriel : tout reste au même
-endroit et vos coéquipiers suivent la discussion.
+Les commentaires de l'enseignant s'affichent dans l'onglet **Files changed** de
+votre soumission, sous la ligne concernée. Chacun peut ouvrir un fil où il
+peut répondre : poser une question, demander une précision, expliquer la
+démarche.
 
 ---
 
@@ -298,7 +239,7 @@ aux non-juristes se trouve sur le site de Creative Commons, en français :
 | *commit* (enregistrement) | une modification enregistrée, datée et signée. Rien ne s'efface d'un *commit* |
 | *branch* (branche) | une ligne de travail en parallèle. La vôtre porte votre travail en cours sans toucher à la version officielle |
 | `main` | la *branch* officielle, celle qui fait foi. Personne n'écrit dedans directement |
-| *pull request* (demande de fusion) | la demande d'intégrer votre *branch* dans `main`. Ici, c'est votre remise : votre travail, la discussion et la correction sont tous là |
+| *pull request* (demande de fusion) | la demande d'intégrer votre *branch* dans `main`. Ici, c'est votre soumission : votre travail, la discussion et la correction sont tous là |
 | *check* (contrôle) | une vérification automatique lancée à chaque *commit*. Le vôtre cherche les renseignements personnels |
 | *review* (révision) | la lecture commentée de l'enseignant, ligne par ligne |
 | *merge* (fusion) | l'intégration du travail accepté dans `main`. Réservé à l'enseignant |
@@ -306,7 +247,7 @@ aux non-juristes se trouve sur le site de Creative Commons, en français :
 
 ---
 
-## En cas de blocage
+## Dépannage
 
 Ouvrez une *issue* dans l'onglet **Issues** plutôt que d'écrire un courriel :
 la réponse va servir aux autres équipes.
