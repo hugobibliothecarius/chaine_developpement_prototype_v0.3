@@ -26,7 +26,7 @@ du cours, la date et la licence sont ajoutés automatiquement. Tout ce que vous 
 
 ## IMPORTANT: À lire **avant** de commencer
 
-### Concernant vos renseignements personnels
+### 1. Renseignements personnels
 
 Ce répertoire est accessible au public: Si vous décidez de mettre votre travail ici, il sera publié **sous votre nom**: n'importe qui peut le consulter et voir votre nom.
 
@@ -38,7 +38,7 @@ continueront d'apparaître**, même si :
 
 Considérez que ce qui est enregistré ici y reste.
 
-#### Droit de refus: L'utilisation de cette plateform n'est pas obligatoire, elle est **optionnelle**
+### 2. Droit de refus: L'utilisation de cette plateform n'est pas obligatoire, elle est **optionnelle**
 
 L'utilisation de cette plateforme sur une base volontaire, personne ne peut vous contraindre à l'utiliser.
 
@@ -47,7 +47,7 @@ soumission non publique vous sera toujours offerte, vous serez évalués sur le 
 votre nom ait à être publié. Vous n'avez pas à vous justifier, et ce choix n'a aucune
 incidence sur votre note.
 
-### Optionnelle : Masquer votre adresse courriel
+### 3. Optionnel : Masquer votre adresse courriel
 
 Cliquez sur votre photo en haut à
 droite → **Settings** → **Emails**, puis cochez **Keep my email addresses
@@ -58,7 +58,7 @@ l'historique du *repository* — et comme pour vos noms, il n'est pas possible d
 corriger un *commit* déjà fait. Faites-le **avant** votre première
 contribution afin.
 
-### Droit d'auteur
+### 4. Droit d'auteur
 
 Vos noms figureront sur la page titre du document final, sous licence
 **Creative Commons Attribution 4.0**. 
@@ -73,6 +73,7 @@ Lorsque vos travaux seront rédigés, corrigés et approuvés, les travaux pourr
 Montréal, où ils recevront une adresse permanente et d'où ils pourront être cités.
 
 ---
+
 ## Mode d'emploi
 
 ### 1. Accèder à votre fichier de travail
@@ -91,6 +92,8 @@ Si l'erreur arrive, rien n'est perdu : Git conserve toutes les versions. Elle
 se verra dans votre soumission, où plus d'un fichier apparaîtrait, et
 l'enseignant vous demandera de la corriger avant d'accepter le travail.
 
+---
+
 ### 2. Rédaction
 
 L'icône ✏️ en haut à droite du fichier ouvre l'éditeur. L'onglet **Preview**
@@ -105,6 +108,8 @@ encadrées par `<!--` et `-->` :
 
 Les consignes ne sont que visible dans l'éditeur. Elles n'apparaitront pas dans le document final. Si vous souhaitez vous en assurer, vous n'avez qu'à cliquer sur **Preview** afin d'avoir le rendu réel de votre document de travail.
 
+---
+
 ### 3. Soumettre pour correction
 
 - Cliquez sur **Commit changes…** en haut à droite. 
@@ -115,7 +120,6 @@ Les consignes ne sont que visible dans l'éditeur. Elles n'apparaitront pas dans
 
 Exemple: Équipe 03 - Simulation en chirurgie cardio thoracique
 ```
-
 Pour le reste, ne changez rien. Tout est déjà présélectionné pour vous. GitHub ne vous laissera pas écrire directement
 dans `main` — l'option est grisée, ou absente selon la version.
 
@@ -133,6 +137,8 @@ C'est fait, votre travail est soumis. Ce clic crée la soumission et vous dépos
 - Cochez maintenant les cases qui sont devenus cliquables. 
 
 Il n'y a rien à enregistrer : chaque case se sauvegarde d'elle-même lorsque vous les cliqués.
+
+---
 
 ### 4. Validation automatisé de la soumission
 
@@ -155,6 +161,8 @@ Un grand décompte de résultats. Au-delà de dix millions, huit chiffres collé
 
 Pour nombres élevés, l'utilisation de la typographie correcte en français pour les formater - séparé par  des espaces, va vous éviter tout blocage (ex:  « 12 345 678 »)
 
+---
+
 ### 5. Continuer de travailler
 
 Vous pouvez toujours continuer de modifier votre travail jusqu'à la date de soumission limite - fixée par enseignant. Pour ce faire, vous devez absolument utiliser le *pull request* de votre soumission - ne jamais utiliser le fichier dans votre dossier equipes/. 
@@ -169,6 +177,8 @@ Vos modifications s'ajoutent au même *pull request* que lorsque vous aviez fait
 
 > Pourquoi ne pas passer par votre? Le dossier equipes/ affiche la version officielle de votre travail, celle qui a déjà été > acceptée : elle vit sur la branch main. Votre ébauche en cours, elle, vit sur votre propre branch, et vous y accédez par 
 > votre pull request. En passant par celle-ci, vous êtes sûrs de modifier le bon fichier.
+
+---
 
 ### 6. Après la soumission
 
