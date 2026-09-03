@@ -63,11 +63,11 @@ Vos noms figureront sur la page titre du document final, sous licence
 **Creative Commons Attribution 4.0**. 
 
 La licence CC BY permet à quiconque de reprendre et d'adapter
-votre stratégie, y compris à des fins commerciales, **à condition de vous
+votre travail, y compris à des fins commerciales, **à condition de vous
 créditer**. C'est aussi pour ça que vos noms y sont : sans eux, personne ne
 saurait qui créditer.
 
-Lorsque vos travaux seront rédigés, corrigés et approuvés, les travaux pourront
+Lorsque vos travaux seront rédigés, corrigés et approuvés, il pourront aussi
 être déposés dans **Papyrus**, le dépôt institutionnel de l'Université de
 Montréal, où ils recevront une adresse permanente et d'où ils pourront être cités.
 
