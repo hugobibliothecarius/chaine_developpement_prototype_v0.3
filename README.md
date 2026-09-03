@@ -140,7 +140,7 @@ Il n'y a rien à enregistrer : chaque case se sauvegarde d'elle-même lorsque vo
 
 ---
 
-### 4. Validation automatisé de la soumission
+#### 3.1. Validation/Contrôle automatisé de la soumission
 
 Quelques secondes plus tard, au bas de la page :
 
@@ -163,9 +163,9 @@ Pour nombres élevés, l'utilisation de la typographie correcte en français pou
 
 ---
 
-### 5. Continuer de travailler
+#### 3.2. Continuer de travailler
 
-Vous pouvez toujours continuer de modifier votre travail jusqu'à la date de soumission limite - fixée par enseignant. Pour ce faire, vous devez absolument utiliser le *pull request* de votre soumission - ne jamais utiliser le fichier dans votre dossier equipes/. 
+Après la soumission de votre travail, vous pouvez toujours continuer le modifier. Pour ce faire, vous devez utiliser le *pull request* de votre soumission - ne jamais utiliser le fichier dans votre dossier equipes/. 
 
 Conseil d'usage:
 1. Onglet *Pull requests* → ouvrez la vôtre. Mettez-la en signet, vous pourriez y revenir souvent.
@@ -180,7 +180,7 @@ Vos modifications s'ajoutent au même *pull request* que lorsque vous aviez fait
 
 ---
 
-### 6. Après la soumission
+### 6. Correction: Approbation, Demande de Changement & Commentaires
 
 L'enseignant corrige le travail que vous avez soumis à l'aide du *Pull requests* dans l'onglet **Files changed** et sera en mesure d'y ajouter des commentaire. C'est ce que GitHub appelle une review. Cela aboutit à trois scénarios pour les étudiants:
 
@@ -188,7 +188,7 @@ L'enseignant corrige le travail que vous avez soumis à l'aide du *Pull requests
 travail rejoint le dossier de votre équipe sur `main`, et le document final se
 produit automatiquement, avec sa page titre à vos noms.
 
-2. **Des corrections sont demandées.** La fusion reste bloquée tant que vous n'avez
+2. **Des changements sont demandées.** La fusion reste bloquée tant que vous n'avez
 pas repris votre texte. Deux façons de le faire, selon la forme du commentaire.
 
 - **Une ou plusieurs suggestions sont formulées** — un encadré vous montre la ligne corrigée. Un
