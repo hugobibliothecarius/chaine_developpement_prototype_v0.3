@@ -36,15 +36,14 @@ continueront d'apparaître**, même si :
 - votre équipe décide finalement de ne pas déposer dans Papyrus ;
 - vous quittez le cours.
 
-Considérez que ce qui est enregistré ici y reste.
+Considérez que ce qui est enregistré ici, y reste.
 
 ### 2. Droit de refus
 
-L'utilisation de cette plateforme sur une base volontaire, vous avez le droit de refuser.
+L'utilisation de cette plateforme se fait sur une base volontaire, vous avez le droit de refuser.
 
-**Avant de faire quoi que ce soit, avisez votre enseignant**. Une voie de
-soumission non publique vous sera toujours offerte, vous serez évalués sur le même travail, sans que
-votre nom ait à être publié. Vous n'avez pas à vous justifier, et ce choix n'a aucune
+**Avant de faire quoi que ce soit ici, avisez votre enseignant**. Une voie de
+soumission non publique vous sera toujours offerte, vous serez évalués sur le même travail. Vous n'avez pas à vous justifier, et ce choix n'a aucune
 incidence sur votre note.
 
 ### 3. Optionnel : Masquer votre adresse courriel
