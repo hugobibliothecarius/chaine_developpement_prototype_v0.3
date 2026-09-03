@@ -26,7 +26,7 @@ du cours, la date et la licence sont ajoutés automatiquement. Tout ce que vous 
 
 ## IMPORTANT: À lire **avant** de commencer
 
-### 1. Renseignements personnels
+### Renseignements personnels
 
 Ce répertoire est accessible au public: Si vous décidez de mettre votre travail ici, il sera publié **sous votre nom**: n'importe qui peut le consulter et voir votre nom.
 
@@ -38,7 +38,7 @@ continueront d'apparaître**, même si :
 
 Considérez que ce qui est enregistré ici, y reste.
 
-### 2. Droit de refus
+### Droit de refus
 
 L'utilisation de cette plateforme se fait sur une base volontaire, vous avez le droit de refuser.
 
@@ -46,7 +46,7 @@ L'utilisation de cette plateforme se fait sur une base volontaire, vous avez le 
 soumission non publique vous sera toujours offerte, vous serez évalués sur le même travail. Vous n'avez pas à vous justifier, et ce choix n'a aucune
 incidence sur votre note.
 
-### 3. Optionnel : Masquer votre adresse courriel
+### Optionnel : Masquer votre adresse courriel
 
 Cliquez sur votre photo en haut à
 droite → **Settings** → **Emails**, puis cochez **Keep my email addresses
@@ -57,7 +57,7 @@ l'historique du *repository* — et comme pour vos noms, il n'est pas possible d
 corriger un *commit* déjà fait. Faites-le **avant** votre première
 contribution afin.
 
-### 4. Droit d'auteur
+### Droit d'auteur
 
 Vos noms figureront sur la page titre du document final, sous licence
 **Creative Commons Attribution 4.0**. 
