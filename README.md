@@ -38,7 +38,7 @@ continueront d'apparaître**, même si :
 
 Considérez que ce qui est enregistré ici y reste.
 
-### 2. Droit de refus: L'utilisation de cette plateform n'est pas obligatoire, elle est **optionnelle**
+### 2. Droit de refus
 
 L'utilisation de cette plateforme sur une base volontaire, personne ne peut vous contraindre à l'utiliser.
 
